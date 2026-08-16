@@ -469,6 +469,12 @@
       data = FALLBACK;
     }
     data.generatedOn = data.generatedOn || FALLBACK.generatedOn;
+    window.IPOSite = {
+      get data() { return data; },
+      fmtInr,
+      statusMeta,
+      buildReportText
+    };
     renderStats();
     renderPicks();
     renderGrid();

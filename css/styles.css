@@ -294,6 +294,62 @@ section { padding: 40px 0; }
 .share-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
 .share-actions .btn { flex: 0 0 auto; }
 
+/* ---------- Chat assistant ---------- */
+#assistantHost { position: fixed; bottom: 20px; right: 20px; z-index: 60; }
+.asm-toggle {
+  width: 56px; height: 56px; border-radius: 50%; border: none; cursor: pointer;
+  background: linear-gradient(135deg, var(--green), #00a2d8); color: #fff;
+  font-size: 26px; font-weight: 800; box-shadow: var(--shadow-lg);
+  display: grid; place-items: center; transition: transform 0.15s ease;
+}
+.asm-toggle:hover { transform: scale(1.06); }
+.asm-panel {
+  position: fixed; bottom: 88px; right: 20px; width: min(380px, calc(100vw - 40px));
+  height: min(520px, calc(100vh - 120px)); background: var(--card); border: 1px solid var(--line);
+  border-radius: var(--radius); box-shadow: var(--shadow-lg); display: flex; flex-direction: column;
+  overflow: hidden;
+}
+.asm-head {
+  display: flex; justify-content: space-between; align-items: center; gap: 10px;
+  padding: 14px 16px; background: linear-gradient(135deg, var(--green-dark), #00a2d8); color: #fff;
+  font-size: 14.5px;
+}
+.asm-head button {
+  background: rgba(255, 255, 255, 0.2); border: none; color: #fff; cursor: pointer;
+  width: 28px; height: 28px; border-radius: 50%; font-size: 16px; line-height: 1;
+}
+.asm-msg-list {
+  flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 10px;
+  background: #fafbfc;
+}
+.asm-msg {
+  max-width: 85%; padding: 10px 13px; border-radius: 14px; font-size: 13.5px;
+  white-space: pre-wrap; word-break: break-word; line-height: 1.5;
+}
+.asm-msg.bot { background: var(--card); border: 1px solid var(--line); align-self: flex-start; border-bottom-left-radius: 4px; }
+.asm-msg.user { background: linear-gradient(135deg, var(--green-dark), #00a2d8); color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
+.asm-msg.typing { color: var(--muted); font-style: italic; }
+.asm-suggestions {
+  display: flex; flex-wrap: wrap; gap: 6px; padding: 8px 14px; border-top: 1px solid var(--line);
+  background: #fff;
+}
+.asm-chip {
+  border: 1px solid var(--line); background: #f7f8fa; color: var(--ink); font-size: 12px;
+  padding: 5px 10px; border-radius: 999px; cursor: pointer; transition: border-color 0.15s ease;
+}
+.asm-chip:hover { border-color: var(--green); color: var(--green-dark); }
+.asm-form { display: flex; gap: 8px; padding: 10px 12px; border-top: 1px solid var(--line); background: #fff; }
+.asm-form input {
+  flex: 1; padding: 9px 12px; border: 1px solid var(--line); border-radius: 10px; font-size: 13.5px;
+  outline: none;
+}
+.asm-form input:focus { border-color: var(--green); }
+.asm-form button {
+  width: 40px; border: none; border-radius: 10px; cursor: pointer; color: #fff; font-size: 15px;
+  background: linear-gradient(135deg, var(--green-dark), #00a2d8);
+}
+
+
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {
   .hero-grid { grid-template-columns: 1fr; gap: 24px; }
