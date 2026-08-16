@@ -10,7 +10,7 @@
   <meta property="og:title" content="Samar's IPO Market - Mainboard IPO Screener" />
   <meta property="og:description" content="Affordable mainboard IPOs (lots <= Rs 15,000) with QIB reports, RHP summaries, live prices and safety guidance for the common investor." />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='4' y='16' width='6' height='12' rx='1' fill='%2300d09c'/><rect x='13' y='10' width='6' height='18' rx='1' fill='%2300a2d8'/><rect x='22' y='4' width='6' height='24' rx='1' fill='%23262a41'/></svg>" />
-  <link rel="stylesheet" href="css/styles.css?v=6" />
+  <link rel="stylesheet" href="css/styles.css?v=7" />
 </head>
 <body>
   <header class="topbar">
@@ -21,6 +21,7 @@
       </a>
       <nav class="nav" id="nav">
         <a href="#dashboard">Dashboard</a>
+        <a href="#listing">Listing</a>
         <a href="#picks">Best Picks</a>
         <a href="#reports">Reports</a>
         <a href="#howto">How to Apply</a>
@@ -93,6 +94,15 @@
 
     <div class="ipo-grid" id="ipoGrid"></div>
     <p class="empty" id="emptyState" hidden>No IPOs match your filters. Try clearing the search.</p>
+  </section>
+
+  <section class="container" id="listing">
+    <div class="section-head">
+      <h2>Full IPO Listing</h2>
+      <p>Every tracked mainboard IPO, grouped exactly like the daily email report — name, band, lot, minimum, QIB/retail subscription, close date and verdict.</p>
+      <span class="data-note" id="listingNote"></span>
+    </div>
+    <div class="listing" id="ipoListing"></div>
   </section>
 
   <section class="container" id="picks">
@@ -210,6 +220,6 @@
     </div>
   </div>
 
-  <script src="js/main.js?v=6"></script>
+  <script src="js/main.js?v=7"></script>
 </body>
 </html>

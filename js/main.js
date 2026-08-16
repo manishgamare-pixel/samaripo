@@ -244,6 +244,57 @@
     });
   }
 
+  function renderListing() {
+    const groups = [
+      { key: "open", title: "OPEN NOW" },
+      { key: "upcoming", title: "UPCOMING" },
+      { key: "listed", title: "LISTED" }
+    ];
+    const html = groups
+      .map((g) => {
+        const items = data.filter((i) => i.status === g.key);
+        const rows = items.length
+          ? items.map(ipoListingRow).join("")
+          : `<div class="listing-row listing-empty">No ${g.title} IPOs tracked.</div>`;
+        return `
+          <div class="listing-group">
+            <h3>${g.title}</h3>
+            <div class="listing-header">
+              <span>IPO</span><span>Band</span><span>Lot</span><span>Min.</span><span>QIB</span><span>Retail</span><span>Close</span><span>Verdict</span>
+            </div>
+            ${rows}
+          </div>`;
+      })
+      .join("");
+    $("#ipoListing").innerHTML = html;
+    $("#listingNote").textContent = data.generatedOn
+      ? `Data as of ${data.generatedOn} · Illustrative — verify on BSE/NSE`
+      : "";
+  }
+
+  function ipoListingRow(i) {
+    const st = statusMeta[i.status] || statusMeta.listed;
+    const gain = i.status === "listed" && i.listingGain && i.listingGain !== "TBA"
+      ? ` ${i.listingGain}` : "";
+    return `
+      <div class="listing-row">
+        <span class="listing-name">
+          ${i.name}<span class="status-pill ${st.cls}">${st.label}</span>
+        </span>
+        <span>${i.priceBand}</span>
+        <span>${i.lotSize} sh</span>
+        <span>${i.minInvestment}</span>
+        <span>${i.qib.subscription}</span>
+        <span>${i.retail.subscription}</span>
+        <span>${i.dates.close}</span>
+        <span class="verdict-tag ${verdictCls(i.verdict)}">${i.verdict}${gain}</span>
+      </div>`;
+  }
+
+  function verdictCls(v) {
+    return { Strong: "v-strong", Moderate: "v-moderate", Speculative: "v-speculative", Watch: "v-watch", Neutral: "v-neutral" }[v] || "v-neutral";
+  }
+
   function renderReports() {
     const withReports = data.filter((i) => i.report);
     $("#reportList").innerHTML = withReports
@@ -421,6 +472,7 @@
     renderStats();
     renderPicks();
     renderGrid();
+    renderListing();
     renderReports();
     initShareBox();
   }
