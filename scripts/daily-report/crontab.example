@@ -1,0 +1,6 @@
+# Samar's IPO Market - daily alerts (times in IST)
+# Morning report at 08:00 IST (= 02:30 UTC)
+30 2 * * * /path/to/scripts/daily-report/run_daily.sh morning >> /var/log/samar_ipo_report.log 2>&1
+
+# Peak alert near market close at 15:15 IST (= 09:45 UTC)
+45 9 * * * /path/to/scripts/daily-report/run_daily.sh peak >> /var/log/samar_ipo_report.log 2>&1

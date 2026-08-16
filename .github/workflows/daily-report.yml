@@ -1,0 +1,45 @@
+name: daily-ipo-report
+
+on:
+  schedule:
+    # 08:00 IST = 02:30 UTC - daily morning report
+    - cron: '30 2 * * *'
+    # 15:15 IST = 09:45 UTC - peak alert near market close
+    - cron: '45 9 * * *'
+  workflow_dispatch:
+
+jobs:
+  send-report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install --break-system-packages -r scripts/daily-report/requirements.txt
+
+      - name: Determine mode from schedule
+        id: mode
+        shell: bash
+        run: |
+          if [ "${{ github.event.schedule }}" = "45 9 * * *" ]; then
+            echo "args=--peak --live" >> "$GITHUB_OUTPUT"
+          else
+            echo "args=" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run daily report
+        env:
+          USER_MAIL_TO: ${{ secrets.USER_MAIL_TO }}
+          USER_SMTP_HOST: ${{ secrets.USER_SMTP_HOST }}
+          USER_SMTP_PORT: ${{ secrets.USER_SMTP_PORT }}
+          USER_SMTP_USER: ${{ secrets.USER_SMTP_USER }}
+          USER_SMTP_PASSWORD: ${{ secrets.USER_SMTP_PASSWORD }}
+        run: |
+          python3 scripts/daily-report/daily_report.py ${{ steps.mode.outputs.args }}

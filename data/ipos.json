@@ -1,0 +1,512 @@
+{
+  "generatedOn": "2026-08-15",
+  "note": "Illustrative dataset for education. Update this file daily with live data from BSE/NSE before running the report scripts.",
+  "ipos": [
+    {
+      "id": "bajaj-housing-finance",
+      "symbol": "BAJAJHFL.NS",
+      "name": "Bajaj Housing Finance",
+      "sector": "Housing Finance",
+      "exchange": "NSE | BSE",
+      "status": "listed",
+      "priceBand": "₹66 – ₹70",
+      "lotSize": 213,
+      "minInvestment": "₹14,910",
+      "issueSize": "₹6,560 Cr",
+      "dates": {
+        "open": "2024-09-09",
+        "close": "2024-09-11",
+        "listing": "2024-09-20"
+      },
+      "qib": {
+        "subscription": "209.04x",
+        "bookedAsOn": "Final day"
+      },
+      "retail": {
+        "subscription": "11.14x"
+      },
+      "gmp": "₹95",
+      "gmpAsOn": "Pre-listing",
+      "listingGain": "+114%",
+      "listingPrice": "₹149.99",
+      "rating": 4.5,
+      "verdict": "Strong",
+      "tags": [
+        "Affordable lot",
+        "Housing",
+        "High GMP"
+      ],
+      "highlights": [
+        "India's 2nd largest housing finance company by AUM (₹97,000+ Cr).",
+        "Bajaj Finserv parentage - strong brand and distribution.",
+        "AUM growth of ~27% YoY with improving NIM.",
+        "Retail lot of only ₹14,910 - very affordable for retail investors."
+      ],
+      "risks": [
+        "Competition from banks and NBFCs.",
+        "Interest-rate sensitivity of the housing loan book.",
+        "Trading at premium valuations post listing."
+      ],
+      "whyAffordable": "Lot of just 213 shares at ₹70 upper band means ₹14,910 per application - among the lowest mainboard minimums.",
+      "report": "reports/bajaj-housing-rhp-qib.html",
+      "livePrice": 84.33,
+      "high52": 117.98,
+      "distancePct": 28.5,
+      "nearPeak": false
+    },
+    {
+      "id": "hyundai-motor-india",
+      "symbol": "HYUNDAI.NS",
+      "name": "Hyundai Motor India",
+      "sector": "Automobiles",
+      "exchange": "NSE | BSE",
+      "status": "listed",
+      "priceBand": "₹1,865 – ₹1,960",
+      "lotSize": 7,
+      "minInvestment": "₹13,720",
+      "issueSize": "₹27,870 Cr",
+      "dates": {
+        "open": "2024-10-15",
+        "close": "2024-10-17",
+        "listing": "2024-10-22"
+      },
+      "qib": {
+        "subscription": "0.73x",
+        "bookedAsOn": "Final day"
+      },
+      "retail": {
+        "subscription": "0.52x"
+      },
+      "gmp": "₹30",
+      "gmpAsOn": "Pre-listing",
+      "listingGain": "-1%",
+      "listingPrice": "₹1,934",
+      "rating": 3.0,
+      "verdict": "Neutral",
+      "tags": [
+        "Large-cap",
+        "High price per share"
+      ],
+      "highlights": [
+        "India's 2nd largest passenger vehicle maker, No.1 in SUV segment.",
+        "Industry-leading margins and ROCE.",
+        "Only an Offer-for-Sale (OFS) - company gets zero proceeds.",
+        "Lot of just 7 shares = ₹13,720 minimum."
+      ],
+      "risks": [
+        "High valuation vs global peers.",
+        "Slow volume growth in entry segment.",
+        "Grey market premium was thin, indicating weak demand."
+      ],
+      "whyAffordable": "Only 7 shares per lot keeps the minimum outlay near ₹14,000 despite the ₹1,960 band.",
+      "report": "reports/hyundai-motor-rhp-qib.html",
+      "livePrice": 2199.0,
+      "high52": 2890.0,
+      "distancePct": 23.9,
+      "nearPeak": false
+    },
+    {
+      "id": "swiggy",
+      "symbol": "SWIGGY.NS",
+      "name": "Swiggy",
+      "sector": "Internet / Q-Commerce",
+      "exchange": "NSE | BSE",
+      "status": "listed",
+      "priceBand": "₹371 – ₹390",
+      "lotSize": 38,
+      "minInvestment": "₹14,820",
+      "issueSize": "₹11,327 Cr",
+      "dates": {
+        "open": "2024-11-06",
+        "close": "2024-11-08",
+        "listing": "2024-11-13"
+      },
+      "qib": {
+        "subscription": "4.19x",
+        "bookedAsOn": "Final day"
+      },
+      "retail": {
+        "subscription": "1.48x"
+      },
+      "gmp": "₹18",
+      "gmpAsOn": "Pre-listing",
+      "listingGain": "+5%",
+      "listingPrice": "₹410",
+      "rating": 3.5,
+      "verdict": "Moderate",
+      "tags": [
+        "Consumer tech",
+        "Loss-making"
+      ],
+      "highlights": [
+        "Leading food delivery + fast-growing quick-commerce (Instamart).",
+        "Growing GOV with improving contribution margins.",
+        "Company still loss-making at PAT level - read the RHP carefully.",
+        "Lot of 38 shares = ₹14,820 minimum."
+      ],
+      "risks": [
+        "Cash burn in quick-commerce.",
+        "Intense competition from Zomato, Blinkit, Zepto.",
+        "No dividend and no assured profitability timeline."
+      ],
+      "whyAffordable": "38-share lot at ₹390 keeps the minimum outlay under ₹15,000.",
+      "report": "reports/swiggy-rhp-qib.html",
+      "livePrice": 276.3,
+      "high52": 474.0,
+      "distancePct": 41.7,
+      "nearPeak": false
+    },
+    {
+      "id": "ntpc-green-energy",
+      "symbol": "NTPCGREEN.NS",
+      "name": "NTPC Green Energy",
+      "sector": "Renewable Energy",
+      "exchange": "NSE | BSE",
+      "status": "listed",
+      "priceBand": "₹102 – ₹108",
+      "lotSize": 138,
+      "minInvestment": "₹14,904",
+      "issueSize": "₹10,000 Cr",
+      "dates": {
+        "open": "2024-11-19",
+        "close": "2024-11-21",
+        "listing": "2024-11-27"
+      },
+      "qib": {
+        "subscription": "1.27x",
+        "bookedAsOn": "Final day"
+      },
+      "retail": {
+        "subscription": "4.13x"
+      },
+      "gmp": "₹7",
+      "gmpAsOn": "Pre-listing",
+      "listingGain": "+3%",
+      "listingPrice": "₹111",
+      "rating": 3.5,
+      "verdict": "Moderate",
+      "tags": [
+        "Green energy",
+        "PSU parent",
+        "Affordable lot"
+      ],
+      "highlights": [
+        "Renewable arm of NTPC - largest power utility in India.",
+        "Large renewable capacity pipeline and government tailwinds.",
+        "Lot of 138 shares = ₹14,904 minimum.",
+        "Grey market premium was modest (~6%), implying a subdued listing."
+      ],
+      "risks": [
+        "Valuation premium to listed renewable peers.",
+        "Regulatory and tariff risks.",
+        "Parent-dependent for projects and cash flows."
+      ],
+      "whyAffordable": "138 shares per lot at ₹108 = ₹14,904, comfortably under ₹15,000.",
+      "report": "reports/ntpc-green-rhp-qib.html",
+      "livePrice": 91.93,
+      "high52": 119.95,
+      "distancePct": 23.4,
+      "nearPeak": false
+    },
+    {
+      "id": "vishal-mega-mart",
+      "symbol": "VMM.NS",
+      "name": "Vishal Mega Mart",
+      "sector": "Retail",
+      "exchange": "NSE | BSE",
+      "status": "listed",
+      "priceBand": "₹74 – ₹78",
+      "lotSize": 192,
+      "minInvestment": "₹14,976",
+      "issueSize": "₹8,000 Cr",
+      "dates": {
+        "open": "2024-12-11",
+        "close": "2024-12-13",
+        "listing": "2024-12-18"
+      },
+      "qib": {
+        "subscription": "4.18x",
+        "bookedAsOn": "Final day"
+      },
+      "retail": {
+        "subscription": "14.16x"
+      },
+      "gmp": "₹30",
+      "gmpAsOn": "Pre-listing",
+      "listingGain": "+44%",
+      "listingPrice": "₹112",
+      "rating": 4.0,
+      "verdict": "Strong",
+      "tags": [
+        "Retail",
+        "Mass market",
+        "High retail demand"
+      ],
+      "highlights": [
+        "Mass-market grocery & apparel retailer with PAN-India reach.",
+        "High-store expansion with low-cost business model.",
+        "Retail subscription of 14x showed strong retail interest.",
+        "Lot of 192 shares = ₹14,976 minimum."
+      ],
+      "risks": [
+        "Low-margin retail business.",
+        "High working-capital intensity.",
+        "Competition from organised and unorganised retail."
+      ],
+      "whyAffordable": "192 shares at ₹78 = ₹14,976, just under the ₹15,000 threshold.",
+      "report": "reports/vishal-mega-mart-rhp-qib.html",
+      "livePrice": 105.2,
+      "high52": 157.6,
+      "distancePct": 33.2,
+      "nearPeak": false
+    },
+    {
+      "id": "mobikwik",
+      "symbol": "MOBIKWIK.NS",
+      "name": "MobiKwik",
+      "sector": "Fintech",
+      "exchange": "NSE | BSE",
+      "status": "listed",
+      "priceBand": "₹265 – ₹279",
+      "lotSize": 53,
+      "minInvestment": "₹14,787",
+      "issueSize": "₹572 Cr",
+      "dates": {
+        "open": "2024-12-11",
+        "close": "2024-12-13",
+        "listing": "2024-12-18"
+      },
+      "qib": {
+        "subscription": "82.92x",
+        "bookedAsOn": "Final day"
+      },
+      "retail": {
+        "subscription": "104.43x"
+      },
+      "gmp": "₹80",
+      "gmpAsOn": "Pre-listing",
+      "listingGain": "+87%",
+      "listingPrice": "₹523",
+      "rating": 3.5,
+      "verdict": "Speculative",
+      "tags": [
+        "Fintech",
+        "Small issue",
+        "High volatility"
+      ],
+      "highlights": [
+        "Digital payments + lending platform (Zaakpay, payments bank arm).",
+        "Retail subscription of 104x - huge retail frenzy.",
+        "Small issue size led to a large listing pop (+87%).",
+        "Lot of 53 shares = ₹14,787 minimum."
+      ],
+      "risks": [
+        "Highly volatile stock post listing.",
+        "Competition from UPI giants (GPay, PhonePe, Paytm).",
+        "History of losses; profitability is recent."
+      ],
+      "whyAffordable": "53-share lot = ₹14,787, very small outlay for a fintech play.",
+      "report": "reports/mobikwik-rhp-qib.html",
+      "livePrice": 203.21,
+      "high52": 334.0,
+      "distancePct": 39.2,
+      "nearPeak": false
+    },
+    {
+      "id": "sagility-india",
+      "symbol": "SAGILITY.NS",
+      "name": "Sagility India",
+      "sector": "Healthcare IT / BPM",
+      "exchange": "NSE | BSE",
+      "status": "listed",
+      "priceBand": "₹152 – ₹160",
+      "lotSize": 93,
+      "minInvestment": "₹14,880",
+      "issueSize": "₹2,106 Cr",
+      "dates": {
+        "open": "2024-12-12",
+        "close": "2024-12-16",
+        "listing": "2024-12-20"
+      },
+      "qib": {
+        "subscription": "0.79x",
+        "bookedAsOn": "Final day"
+      },
+      "retail": {
+        "subscription": "1.11x"
+      },
+      "gmp": "₹3",
+      "gmpAsOn": "Pre-listing",
+      "listingGain": "+1%",
+      "listingPrice": "₹162",
+      "rating": 3.0,
+      "verdict": "Neutral",
+      "tags": [
+        "Healthcare IT",
+        "OFS"
+      ],
+      "highlights": [
+        "US healthcare-focused IT & BPM services provider.",
+        "Stable revenue with dollar-linked growth.",
+        "Retail subscription was barely 1x - muted interest.",
+        "Lot of 93 shares = ₹14,880 minimum."
+      ],
+      "risks": [
+        "High client concentration.",
+        "Offer is an OFS - no fresh money to the company.",
+        "Dull grey-market premium."
+      ],
+      "whyAffordable": "93-share lot = ₹14,880, affordable entry to a US-healthcare IT story.",
+      "report": "reports/sagility-rhp-qib.html",
+      "livePrice": 42.28,
+      "high52": 57.89,
+      "distancePct": 27.0,
+      "nearPeak": false
+    },
+    {
+      "id": "unimech-aerospace",
+      "symbol": "UNIMECH.NS",
+      "name": "Unimech Aerospace",
+      "sector": "Aerospace / Engineering",
+      "exchange": "NSE | BSE",
+      "status": "listed",
+      "priceBand": "₹745 – ₹785",
+      "lotSize": 19,
+      "minInvestment": "₹14,915",
+      "issueSize": "₹500 Cr",
+      "dates": {
+        "open": "2024-12-23",
+        "close": "2024-12-26",
+        "listing": "2024-12-31"
+      },
+      "qib": {
+        "subscription": "146.73x",
+        "bookedAsOn": "Final day"
+      },
+      "retail": {
+        "subscription": "55.29x"
+      },
+      "gmp": "₹250",
+      "gmpAsOn": "Pre-listing",
+      "listingGain": "+110%",
+      "listingPrice": "₹1,650",
+      "rating": 4.0,
+      "verdict": "Strong",
+      "tags": [
+        "Aerospace",
+        "Defence",
+        "Small issue"
+      ],
+      "highlights": [
+        "Precision engineering for aerospace engines and defence.",
+        "Strong order book and export-driven growth.",
+        "Retail subscription of 55x - very high demand.",
+        "Lot of just 19 shares = ₹14,915 minimum."
+      ],
+      "risks": [
+        "Small-issue listing pops can retrace sharply.",
+        "Valuation rich after the run-up.",
+        "Export and forex exposure."
+      ],
+      "whyAffordable": "19-share lot = ₹14,915, a low-cost entry into an aerospace story.",
+      "report": "reports/unimech-rhp-qib.html",
+      "livePrice": 1522.6,
+      "high52": 1555.0,
+      "distancePct": 2.1,
+      "nearPeak": true
+    },
+    {
+      "id": "avanse-financial",
+      "name": "Avanse Financial Services",
+      "sector": "Education Finance",
+      "exchange": "NSE | BSE",
+      "status": "upcoming",
+      "priceBand": "Expected ₹515 – ₹540",
+      "lotSize": 27,
+      "minInvestment": "Approx ₹14,580",
+      "issueSize": "Approx ₹3,500 Cr",
+      "dates": {
+        "open": "TBA",
+        "close": "TBA",
+        "listing": "TBA"
+      },
+      "qib": {
+        "subscription": "TBA",
+        "bookedAsOn": "Not yet open"
+      },
+      "retail": {
+        "subscription": "TBA"
+      },
+      "gmp": "TBA",
+      "gmpAsOn": "Not yet open",
+      "listingGain": "TBA",
+      "listingPrice": "TBA",
+      "rating": 3.5,
+      "verdict": "Watch",
+      "tags": [
+        "Education loans",
+        "Affordable lot",
+        "Illustrative"
+      ],
+      "highlights": [
+        "Focused education-loan NBFC backed by Warburg Pincus.",
+        "Consistent AUM growth and improving asset quality.",
+        "Illustrative data - update from BSE/NSE once the window opens."
+      ],
+      "risks": [
+        "Education-loan asset quality in a stress cycle.",
+        "Rates and refinancing risk.",
+        "Listing timing still to be announced."
+      ],
+      "whyAffordable": "Expected ~27-share lot keeps the outlay near ₹14,600.",
+      "report": null
+    },
+    {
+      "id": "lg-electronics-india",
+      "name": "LG Electronics India",
+      "sector": "Consumer Electronics",
+      "exchange": "NSE | BSE",
+      "status": "upcoming",
+      "priceBand": "Expected ₹1,450 – ₹1,530",
+      "lotSize": 9,
+      "minInvestment": "Approx ₹13,770",
+      "issueSize": "Approx ₹15,000 Cr",
+      "dates": {
+        "open": "TBA",
+        "close": "TBA",
+        "listing": "TBA"
+      },
+      "qib": {
+        "subscription": "TBA",
+        "bookedAsOn": "Not yet open"
+      },
+      "retail": {
+        "subscription": "TBA"
+      },
+      "gmp": "TBA",
+      "gmpAsOn": "Not yet open",
+      "listingGain": "TBA",
+      "listingPrice": "TBA",
+      "rating": 3.5,
+      "verdict": "Watch",
+      "tags": [
+        "Consumer durables",
+        "Large-cap",
+        "Illustrative"
+      ],
+      "highlights": [
+        "India's #1 or #2 in refrigerators, washing machines, ACs.",
+        "High-margin consumer durables with a strong brand.",
+        "Illustrative data - update from BSE/NSE once the window opens."
+      ],
+      "risks": [
+        "Premium valuation expected.",
+        "OFS structure - proceeds go to the parent.",
+        "Consumer demand slowdown risk."
+      ],
+      "whyAffordable": "Expected ~9-share lot = around ₹13,770 minimum.",
+      "report": null
+    }
+  ],
+  "pricesUpdatedOn": "2026-08-15 22:38:42"
+}

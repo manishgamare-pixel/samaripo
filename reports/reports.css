@@ -1,0 +1,20 @@
+.report-page { padding: 32px 0 48px; }
+.report-header { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); margin-bottom: 18px; }
+.report-header .eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: 0.6px; color: var(--muted); }
+.report-header h1 { font-size: 24px; margin: 6px 0 4px; }
+.report-header .sub { color: var(--muted); font-size: 14px; }
+.chips-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+
+.panel { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); margin-bottom: 16px; }
+.panel h2 { font-size: 17px; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+.panel p, .panel li { font-size: 14px; color: var(--ink); }
+.panel ul { list-style: none; }
+.panel ul li { padding: 6px 0 6px 18px; position: relative; }
+.panel ul li::before { content: "•"; position: absolute; left: 4px; color: var(--green-dark); font-weight: 800; }
+.panel .muted { color: var(--muted); font-size: 13px; }
+
+.table-wrap { overflow-x: auto; }
+table.fin { width: 100%; border-collapse: collapse; font-size: 13.5px; margin-top: 8px; }
+table.fin th, table.fin td { padding: 9px 12px; border-bottom: 1px solid var(--line); text-align: left; }
+table.fin th { background: #f7f8fa; font-size: 12px; text-transform: uppercase; letter-spacing: 0.4px; color: var(--muted); }
+table.fin td.num, table.fin th.num { text-align: right; }

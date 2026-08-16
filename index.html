@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#00d09c" />
+  <title>Samar's IPO Market - Mainboard IPO Screener</title>
+  <meta name="description" content="Samar's IPO Market: affordable mainboard IPOs for retail investors, with QIB reports, RHP links, subscription data and safety guidance." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Samar's IPO Market - Mainboard IPO Screener" />
+  <meta property="og:description" content="Affordable mainboard IPOs (lots <= Rs 15,000) with QIB reports, RHP summaries, live prices and safety guidance for the common investor." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='4' y='16' width='6' height='12' rx='1' fill='%2300d09c'/><rect x='13' y='10' width='6' height='18' rx='1' fill='%2300a2d8'/><rect x='22' y='4' width='6' height='24' rx='1' fill='%23262a41'/></svg>" />
+  <link rel="stylesheet" href="css/styles.css?v=6" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#">
+        <span class="brand-logo">S</span>
+        <span class="brand-name">Samar's <strong>IPO Market</strong></span>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="#dashboard">Dashboard</a>
+        <a href="#picks">Best Picks</a>
+        <a href="#reports">Reports</a>
+        <a href="#howto">How to Apply</a>
+        <a href="#safety">Safety</a>
+        <a href="#alerts">Share Report</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <h1>Best <span class="accent">mainboard IPOs</span> that the common investor can actually afford.</h1>
+          <p>
+            Only SEBI-approved mainboard IPOs with low retail lots (under ~₹15,000).
+            No SMEs, no high-capital plays. Every pick comes with a QIB report, an RHP
+            summary, and honest precautionary measures.
+          </p>
+          <div class="hero-badges">
+            <span class="badge">Mainboard only</span>
+            <span class="badge">Lots <= ₹15,000</span>
+            <span class="badge">QIB + RHP attached</span>
+            <span class="badge">Security checks</span>
+          </div>
+          <form class="search" id="searchForm" role="search">
+            <input type="search" id="searchInput" placeholder="Search IPO name or sector…" aria-label="Search IPOs" />
+            <button type="submit">Search</button>
+          </form>
+        </div>
+        <div class="hero-stats" id="heroStats">
+          <div class="stat-card">
+            <span class="stat-value" id="statTotal">–</span>
+            <span class="stat-label">Mainboard IPOs</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value" id="statOpen">–</span>
+            <span class="stat-label">Open / Upcoming</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value" id="statMin">–</span>
+            <span class="stat-label">Lowest lot outlay</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value" id="statGmp">–</span>
+            <span class="stat-label">Best avg. GMP (listed)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container" id="dashboard">
+    <div class="section-head">
+      <h2>IPO Dashboard</h2>
+      <span class="data-note" id="dataNote"></span>
+    </div>
+
+    <div class="filters" id="filters">
+      <button class="chip active" data-status="all">All</button>
+      <button class="chip" data-status="open">Open</button>
+      <button class="chip" data-status="upcoming">Upcoming</button>
+      <button class="chip" data-status="listed">Listed</button>
+      <label class="toggle-wrap">
+        <input type="checkbox" id="affordableOnly" checked />
+        <span class="toggle-label">Only lots ≤ ₹15,000</span>
+      </label>
+    </div>
+
+    <div class="ipo-grid" id="ipoGrid"></div>
+    <p class="empty" id="emptyState" hidden>No IPOs match your filters. Try clearing the search.</p>
+  </section>
+
+  <section class="container" id="picks">
+    <div class="section-head">
+      <h2>Best Picks for the Common Investor</h2>
+      <p>Ranked from the dataset each load by verdict, rating, retail demand and grey-market premium — always affordable lots, always mainboard. Refresh the data daily to keep this honest.</p>
+      <span class="data-note" id="picksNote"></span>
+    </div>
+    <div class="picks-grid" id="picksGrid"></div>
+  </section>
+
+  <section class="container" id="reports">
+    <div class="section-head">
+      <h2>Reports & Documents</h2>
+      <p>Official RHP filings are published on <a href="https://www.bseindia.com" target="_blank" rel="noopener">BSE</a> and <a href="https://www.nseindia.com" target="_blank" rel="noopener">NSE</a>. Use the curated summaries below, then always read the full RHP before applying.</p>
+    </div>
+    <div class="report-list" id="reportList"></div>
+  </section>
+
+  <section class="container" id="howto">
+    <div class="section-head">
+      <h2>How to Apply Safely</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Use ASBA via your own bank</h3>
+        <p>Log in to your bank's net-banking or your broker's app (Zerodha, Groww, Angel One, etc.). Pick the IPO and submit an ASBA application.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Approve the UPI mandate</h3>
+        <p>Money is <strong>blocked in your own account</strong>, not paid to anyone. Approve the UPI autopay mandate when your bank app asks.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Wait for allotment</h3>
+        <p>If allotted, shares land in your demat account on listing day. If not, your blocked amount is automatically unblocked in 1–2 days.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Book profit or hold</h3>
+        <p>Review the listing and your own risk budget. Never invest more than you can afford to lose.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container" id="safety">
+    <div class="section-head">
+      <h2>Precautionary Measures (Read Before Investing)</h2>
+      <p>Security of your money comes first. These checks will keep you safe.</p>
+    </div>
+    <div class="safety-grid">
+      <div class="safety-card">
+        <h3>Never pay any website to "apply" for an IPO</h3>
+        <p>No legitimate IPO charges you money on a website. The only payment path is ASBA/UPI through your bank or broker. Any site or agent asking for direct payment is a scam.</p>
+      </div>
+      <div class="safety-card">
+        <h3>Verify the RHP on BSE/NSE</h3>
+        <p>Read the Red Herring Prospectus from the exchange's official site only. Check the object of the issue, OFS vs fresh issue, and the risk factors.</p>
+      </div>
+      <div class="safety-card">
+        <h3>Your money stays in YOUR account</h3>
+        <p>With ASBA/UPI the amount is blocked, not transferred. It only moves if you are allotted shares. If anyone asks you to transfer money, it is a red flag.</p>
+      </div>
+      <div class="safety-card">
+        <h3>Beware of "guaranteed allotment" and fake GMP tips</h3>
+        <p>Grey-market premium (GMP) is unregulated speculation. Nobody can guarantee allotment or profits. Treat all GMP figures as entertainment, not advice.</p>
+      </div>
+      <div class="safety-card">
+        <h3>Protect credentials</h3>
+        <p>Never share OTPs, bank login, or demat passwords. Double-check app names, URLs, and WhatsApp numbers. SEBI-registered brokers never ask for your password.</p>
+      </div>
+      <div class="safety-card">
+        <h3>Size the position</h3>
+        <p>IPO allotment is a lottery - not guaranteed. Keep IPO money to a small part of your savings and spread across a few issues rather than all-in on one.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container" id="alerts">
+    <div class="section-head">
+      <h2>Send the Report on WhatsApp</h2>
+      <p>Review or edit today's report below, then send it straight to WhatsApp or draft it as an email. No API keys, no setup — it opens WhatsApp on your phone with the message ready.</p>
+    </div>
+    <div class="alert-setup">
+      <label class="field-label" for="shareText">Today's report (editable)</label>
+      <textarea id="shareText" class="share-text" rows="14" spellcheck="false"></textarea>
+      <div class="share-actions">
+        <button class="btn btn-primary" id="sendWhatsApp" type="button">Send on WhatsApp</button>
+        <button class="btn" id="draftEmail" type="button">Draft as email</button>
+        <button class="btn" id="copyReport" type="button">Copy report</button>
+      </div>
+      <p class="muted" id="shareStatus"></p>
+      <p class="muted">Target: WhatsApp <code>+91 7397939279</code> · Email <code>manishgamare@gmail.com</code></p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p><strong>Samar's IPO Market</strong> - an educational screener.</p>
+      <p class="muted">
+        DISCLAIMER: This website is for information and education only. It is NOT investment advice and nothing here guarantees returns.
+        IPO data is illustrative and can be stale - always verify figures from BSE/NSE and the official RHP before applying.
+        Investments in securities are subject to market risks; read all scheme/offer documents carefully. The GMP, subscription and
+        listing figures shown are indicative only. Consult a SEBI-registered investment advisor before investing.
+      </p>
+    </div>
+  </footer>
+
+  <div class="modal-backdrop" id="modalBackdrop" style="display:none">
+    <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="js/main.js?v=6"></script>
+</body>
+</html>
