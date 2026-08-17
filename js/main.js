@@ -461,14 +461,17 @@
 
   async function init() {
     setupEvents();
+    let json;
     try {
       const res = await fetch("data/ipos.json", { cache: "no-store" });
       if (!res.ok) throw new Error("fetch failed");
-      data = await res.json();
+      json = await res.json();
     } catch (err) {
-      data = FALLBACK;
+      json = FALLBACK;
     }
-    data.generatedOn = data.generatedOn || FALLBACK.generatedOn;
+    data = json.ipos || [];
+    data.generatedOn = json.generatedOn || FALLBACK.generatedOn;
+    data.pricesUpdatedOn = json.pricesUpdatedOn || "";
     window.IPOSite = {
       get data() { return data; },
       fmtInr,

@@ -52,7 +52,8 @@
     return window.IPOSite || {};
   }
   function data() {
-    return (site().data || { ipos: [] }).ipos || [];
+    const d = site().data;
+    return Array.isArray(d) ? d : ((d && d.ipos) || []);
   }
 
   function normalize(q) {
