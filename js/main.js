@@ -91,7 +91,7 @@
       if (q) {
         const hay = `${ipo.name} ${ipo.sector} ${ipo.tags.join(" ")}`.toLowerCase();
         if (!hay.includes(q)) return false;
-      } else if (isArchived(ipo)) {
+      } else if (statusFilter !== "listed" && isArchived(ipo)) {
         return false;
       }
       return true;
@@ -106,16 +106,8 @@
     return parseFloat(m) <= 15000;
   }
 
-  function newestListed() {
-    const listed = data.filter((i) => i.status === "listed");
-    if (!listed.length) return null;
-    return listed.reduce((a, b) => (String(b.dates.listing) > String(a.dates.listing) ? b : a));
-  }
-
   function isArchived(ipo) {
-    if (ipo.status !== "listed") return false;
-    const newest = newestListed();
-    return newest ? ipo.id !== newest.id : false;
+    return ipo.status === "listed";
   }
 
   function visibleIpos() {
@@ -127,16 +119,14 @@
     const open = vis.filter((i) => i.status === "open" || i.status === "upcoming").length;
     const mins = vis.map((i) => parseFloat(String(i.minInvestment).replace(/[^\d.]/g, ""))).filter((n) => !isNaN(n));
     const min = mins.length ? Math.min(...mins) : 0;
-    const gmpVals = vis
-      .filter((i) => i.status === "listed")
-      .map((i) => parseFloat(String(i.gmp).replace(/[^\d.]/g, "")))
-      .filter((n) => n !== null && !isNaN(n));
+    const retailVals = vis
+      .map((i) => parseFloat(String(i.retail.subscription || "").replace(/[^\d.]/g, "")))
+      .filter((n) => !isNaN(n));
     $("#statTotal").textContent = vis.length;
     $("#statOpen").textContent = open;
     $("#statMin").textContent = "₹" + min.toLocaleString("en-IN");
-    $("#statGmp").textContent = gmpVals.length ? "₹" + Math.max(...gmpVals).toLocaleString("en-IN") : "–";
-    const pricesNote = data.pricesUpdatedOn ? ` · Live prices ${data.pricesUpdatedOn}` : "";
-    $("#dataNote").textContent = `Data as of ${data.generatedOn || "today"}${pricesNote} · Illustrative — verify on BSE/NSE`;
+    $("#statRetail").textContent = retailVals.length ? Math.max(...retailVals).toFixed(1) + "x" : "–";
+    $("#dataNote").textContent = `Data as of ${data.generatedOn || "today"} · Illustrative — verify on BSE/NSE`;
   }
 
   function scoreIpo(ipo) {
@@ -219,7 +209,7 @@
         lines.push("* " + i.name + ": live " + fmtInr(i.livePrice) + " | 52w high " + fmtInr(i.high52) + " | " + i.distancePct + "% below | " + mark);
       });
     } else {
-      lines.push("* No live prices available. Run daily_report.py --update-data to refresh.");
+      lines.push("* Listed IPOs are archived and not shown in this report — use the site search to find one.");
     }
     lines.push("");
     lines.push("-- SAFETY REMINDER --");
@@ -275,9 +265,12 @@
         const items = g.key === "listed"
           ? data.filter((i) => i.status === "listed" && !isArchived(i))
           : data.filter((i) => i.status === g.key);
+        const emptyMsg = g.key === "listed"
+          ? "Listed IPOs are archived — use Search or the Listed filter to view them."
+          : `No ${g.title} IPOs tracked.`;
         const rows = items.length
           ? items.map(ipoListingRow).join("")
-          : `<div class="listing-row listing-empty">No ${g.title} IPOs tracked.</div>`;
+          : `<div class="listing-row listing-empty">${emptyMsg}</div>`;
         return `
           <div class="listing-group">
             <h3>${g.title}</h3>

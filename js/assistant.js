@@ -173,7 +173,7 @@
       const listed = visData().filter((i) => i.status === "listed");
       return listed.length
         ? "Listed IPOs we track (all with live prices):\n" + fmtIpoList(listed)
-        : "No listed IPOs in the tracked list.";
+        : "No listed IPOs are shown right now - old listings are archived. Search the site or ask 'tell me about <IPO name>'.";
     }
 
     if (has(tokens, "cheapest", "cheap", "lowest", "affordable", "low") || (tokens.includes("15000") || tokens.includes("15,000"))) {
@@ -195,7 +195,7 @@
 
     if (has(tokens, "peak", "near", "52", "high", "live", "price")) {
       const listed = visData().filter((i) => i.livePrice != null);
-      if (!listed.length) return "No live prices available yet. Run daily_report.py --update-data to refresh.";
+      if (!listed.length) return "Listed IPOs are archived and not shown by default. Search the site or ask 'tell me about <IPO name>' to look up a specific one.";
       const near = listed.filter((i) => i.nearPeak);
       const lines = [];
       if (near.length) {
