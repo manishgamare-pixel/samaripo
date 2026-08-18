@@ -1,5 +1,5 @@
 {
-  "generatedOn": "2026-08-15",
+  "generatedOn": "2026-08-18",
   "note": "Illustrative dataset for education. Update this file daily with live data from BSE/NSE before running the report scripts.",
   "ipos": [
     {
@@ -463,50 +463,56 @@
     },
     {
       "id": "lg-electronics-india",
+      "symbol": "LGEINDIA.NS",
       "name": "LG Electronics India",
       "sector": "Consumer Electronics",
       "exchange": "NSE | BSE",
-      "status": "upcoming",
-      "priceBand": "Expected ₹1,450 – ₹1,530",
-      "lotSize": 9,
-      "minInvestment": "Approx ₹13,770",
-      "issueSize": "Approx ₹15,000 Cr",
+      "status": "listed",
+      "priceBand": "₹1,080 – ₹1,140",
+      "lotSize": 13,
+      "minInvestment": "₹14,040",
+      "issueSize": "₹11,607 Cr",
       "dates": {
-        "open": "TBA",
-        "close": "TBA",
-        "listing": "TBA"
+        "open": "2025-10-07",
+        "close": "2025-10-09",
+        "listing": "2025-10-14"
       },
       "qib": {
-        "subscription": "TBA",
-        "bookedAsOn": "Not yet open"
+        "subscription": "95.76x",
+        "bookedAsOn": "Final day"
       },
       "retail": {
-        "subscription": "TBA"
+        "subscription": "3.23x"
       },
-      "gmp": "TBA",
-      "gmpAsOn": "Not yet open",
-      "listingGain": "TBA",
-      "listingPrice": "TBA",
-      "rating": 3.5,
-      "verdict": "Watch",
+      "gmp": "N/A",
+      "gmpAsOn": "Listed 14 Oct 2025",
+      "listingGain": "+50%",
+      "listingPrice": "₹1,710.10",
+      "rating": 4.0,
+      "verdict": "Strong",
       "tags": [
         "Consumer durables",
         "Large-cap",
-        "Illustrative"
+        "Affordable lot"
       ],
       "highlights": [
-        "India's #1 or #2 in refrigerators, washing machines, ACs.",
-        "High-margin consumer durables with a strong brand.",
-        "Illustrative data - update from BSE/NSE once the window opens."
+        "India's #1 in refrigerators, washing machines and room ACs.",
+        "High-margin consumer durables with a strong global brand (LG Korea).",
+        "Listing debut of ~+50% - opened at ₹1,710.10 vs ₹1,140 issue price.",
+        "Retail lot of just 13 shares = ₹14,040 minimum."
       ],
       "risks": [
-        "Premium valuation expected.",
-        "OFS structure - proceeds go to the parent.",
-        "Consumer demand slowdown risk."
+        "Offer-for-Sale (OFS) structure - proceeds go to the parent.",
+        "Premium valuations; consumer demand can soften in weak quarters.",
+        "Competitive intensity from Samsung, Voltas, Whirlpool and Chinese brands."
       ],
-      "whyAffordable": "Expected ~9-share lot = around ₹13,770 minimum.",
-      "report": null
+      "whyAffordable": "Lot of just 13 shares at the ₹1,140 upper band = ₹14,040 per application - among the lowest mainboard minimums.",
+      "report": null,
+      "livePrice": 1680.1,
+      "high52": 1755.0,
+      "distancePct": 4.3,
+      "nearPeak": false
     }
   ],
-  "pricesUpdatedOn": "2026-08-15 22:38:42"
+  "pricesUpdatedOn": "2026-08-18 11:20:54"
 }
