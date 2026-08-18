@@ -91,6 +91,8 @@
       if (q) {
         const hay = `${ipo.name} ${ipo.sector} ${ipo.tags.join(" ")}`.toLowerCase();
         if (!hay.includes(q)) return false;
+      } else if (isArchived(ipo)) {
+        return false;
       }
       return true;
     });
@@ -104,14 +106,32 @@
     return parseFloat(m) <= 15000;
   }
 
+  function newestListed() {
+    const listed = data.filter((i) => i.status === "listed");
+    if (!listed.length) return null;
+    return listed.reduce((a, b) => (String(b.dates.listing) > String(a.dates.listing) ? b : a));
+  }
+
+  function isArchived(ipo) {
+    if (ipo.status !== "listed") return false;
+    const newest = newestListed();
+    return newest ? ipo.id !== newest.id : false;
+  }
+
+  function visibleIpos() {
+    return data.filter((i) => !isArchived(i));
+  }
+
   function renderStats() {
-    const open = data.filter((i) => i.status === "open" || i.status === "upcoming").length;
-    const mins = data.map((i) => parseFloat(String(i.minInvestment).replace(/[^\d.]/g, ""))).filter((n) => !isNaN(n));
+    const vis = visibleIpos();
+    const open = vis.filter((i) => i.status === "open" || i.status === "upcoming").length;
+    const mins = vis.map((i) => parseFloat(String(i.minInvestment).replace(/[^\d.]/g, ""))).filter((n) => !isNaN(n));
     const min = mins.length ? Math.min(...mins) : 0;
-    const gmpVals = data
-      .map((i) => (i.status === "listed" ? parseFloat(String(i.gmp).replace(/[^\d.]/g, "")) : null))
+    const gmpVals = vis
+      .filter((i) => i.status === "listed")
+      .map((i) => parseFloat(String(i.gmp).replace(/[^\d.]/g, "")))
       .filter((n) => n !== null && !isNaN(n));
-    $("#statTotal").textContent = data.length;
+    $("#statTotal").textContent = vis.length;
     $("#statOpen").textContent = open;
     $("#statMin").textContent = "₹" + min.toLocaleString("en-IN");
     $("#statGmp").textContent = gmpVals.length ? "₹" + Math.max(...gmpVals).toLocaleString("en-IN") : "–";
@@ -130,7 +150,7 @@
   }
 
   function renderPicks() {
-    const picks = data
+    const picks = visibleIpos()
       .slice()
       .sort((a, b) => scoreIpo(b) - scoreIpo(a))
       .slice(0, 4);
@@ -192,7 +212,7 @@
     }
     lines.push("");
     lines.push("-- PEAK STATUS (live prices) --");
-    const liveListed = listed.filter((i) => i.livePrice != null);
+    const liveListed = visibleIpos().filter((i) => i.status === "listed" && i.livePrice != null);
     if (liveListed.length) {
       liveListed.forEach((i) => {
         const mark = i.nearPeak ? "NEAR PEAK - consider profit booking" : "off-high";
@@ -252,7 +272,9 @@
     ];
     const html = groups
       .map((g) => {
-        const items = data.filter((i) => i.status === g.key);
+        const items = g.key === "listed"
+          ? data.filter((i) => i.status === "listed" && !isArchived(i))
+          : data.filter((i) => i.status === g.key);
         const rows = items.length
           ? items.map(ipoListingRow).join("")
           : `<div class="listing-row listing-empty">No ${g.title} IPOs tracked.</div>`;
@@ -476,7 +498,9 @@
       get data() { return data; },
       fmtInr,
       statusMeta,
-      buildReportText
+      buildReportText,
+      visible: visibleIpos,
+      isArchived
     };
     renderStats();
     renderPicks();

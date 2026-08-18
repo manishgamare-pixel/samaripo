@@ -56,6 +56,11 @@
     return Array.isArray(d) ? d : ((d && d.ipos) || []);
   }
 
+  function visData() {
+    const fn = site().visible;
+    return typeof fn === "function" ? fn() : data();
+  }
+
   function normalize(q) {
     return q.toLowerCase().replace(/[^\w\s₹]/g, " ").replace(/\s+/g, " ").trim();
   }
@@ -147,32 +152,32 @@
     }
 
     if (has(tokens, "open", "now", "today")) {
-      const open = data().filter((i) => i.status === "open");
+      const open = visData().filter((i) => i.status === "open");
       if (open.length) {
         return "Currently open for retail bidding:\n" + fmtIpoList(open);
       }
-      const upcoming = data().filter((i) => i.status === "upcoming");
+      const upcoming = visData().filter((i) => i.status === "upcoming");
       return upcoming.length
         ? "No mainboard IPO is open right now. Upcoming:\n" + fmtIpoList(upcoming)
         : "No mainboard IPO is currently open for retail bidding.";
     }
 
     if (has(tokens, "upcoming", "next", "coming")) {
-      const upcoming = data().filter((i) => i.status === "upcoming");
+      const upcoming = visData().filter((i) => i.status === "upcoming");
       return upcoming.length
         ? "Upcoming IPOs:\n" + fmtIpoList(upcoming)
         : "There are no upcoming IPOs in the tracked list right now.";
     }
 
     if (has(tokens, "listed", "listing")) {
-      const listed = data().filter((i) => i.status === "listed");
+      const listed = visData().filter((i) => i.status === "listed");
       return listed.length
         ? "Listed IPOs we track (all with live prices):\n" + fmtIpoList(listed)
         : "No listed IPOs in the tracked list.";
     }
 
     if (has(tokens, "cheapest", "cheap", "lowest", "affordable", "low") || (tokens.includes("15000") || tokens.includes("15,000"))) {
-      const mins = data()
+      const mins = visData()
         .map((i) => ({ ipo: i, n: parseFloat(String(i.minInvestment).replace(/[^\d.]/g, "")) }))
         .filter((x) => !isNaN(x.n))
         .sort((a, b) => a.n - b.n);
@@ -182,14 +187,14 @@
     }
 
     if (has(tokens, "best", "top", "recommend", "pick", "rated", "strong")) {
-      const byRating = data().slice().sort((a, b) => (b.rating || 0) - (a.rating || 0));
+      const byRating = visData().slice().sort((a, b) => (b.rating || 0) - (a.rating || 0));
       if (!byRating.length) return "I have no IPO data to rank right now.";
       const best = byRating[0];
       return "My top pick by rating: " + best.name + " (" + best.rating + "/5, verdict " + best.verdict + ").\nCheck the 'Best Picks' section on the site for the full ranking.";
     }
 
     if (has(tokens, "peak", "near", "52", "high", "live", "price")) {
-      const listed = data().filter((i) => i.livePrice != null);
+      const listed = visData().filter((i) => i.livePrice != null);
       if (!listed.length) return "No live prices available yet. Run daily_report.py --update-data to refresh.";
       const near = listed.filter((i) => i.nearPeak);
       const lines = [];
@@ -208,7 +213,7 @@
     }
 
     if (has(tokens, "total", "count", "how many")) {
-      return "I am tracking " + data().length + " mainboard IPOs on this site.";
+      return "I am tracking " + visData().length + " mainboard IPOs on this site.";
     }
 
     return HELP_MSG;

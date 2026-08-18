@@ -102,12 +102,30 @@ def fetch_live_prices(ipos):
     return prices
 
 
+def newest_listed(ipos):
+    listed = [i for i in ipos if i["status"] == "listed"]
+    if not listed:
+        return None
+    return max(listed, key=lambda i: str(i["dates"].get("listing", "")))
+
+
+def visible_ipos(ipos):
+    """Hide listed IPOs that are older than the newest listing (still kept in data)."""
+    newest = newest_listed(ipos)
+    out = []
+    for ipo in ipos:
+        if ipo["status"] == "listed" and newest and ipo["id"] != newest["id"]:
+            continue
+        out.append(ipo)
+    return out
+
+
 def build_report(data, peak_mode=False, live_prices=None):
     today = date.today().isoformat()
     ipos = data.get("ipos", [])
     open_ips = [i for i in ipos if i["status"] == "open"]
     upcoming = [i for i in ipos if i["status"] == "upcoming"]
-    listed = [i for i in ipos if i["status"] == "listed"]
+    listed = [i for i in visible_ipos(ipos) if i["status"] == "listed"]
 
     lines = []
     lines.append("SAMAR'S IPO MARKET - DAILY REPORT")
