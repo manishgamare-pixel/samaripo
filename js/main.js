@@ -76,7 +76,6 @@
         </div>
         <div class="tags">
           ${ipo.tags.map((t) => `<span class="tag">${t}</span>`).join("")}
-          ${ipo.sample ? `<span class="tag tag-sample">SAMPLE</span>` : ""}
           ${ipo.nearPeak ? `<span class="tag tag-peak">NEAR PEAK</span>` : ""}
         </div>
         <div class="card-actions">
@@ -205,7 +204,6 @@
               <span><b>GMP:</b> ${ipo.gmp}</span>
               <span><b>Retail:</b> ${ipo.retail.subscription}</span>
               ${ipo.livePrice != null ? `<span><b>Live:</b> ${fmtInr(ipo.livePrice)}</span>` : ""}
-              ${ipo.sample ? `<span class="tag tag-sample">SAMPLE</span>` : ""}
               ${ipo.nearPeak ? `<span class="tag tag-peak">NEAR PEAK</span>` : ""}
             </div>
             <p class="pick-why">${ipo.whyAffordable || ""}</p>
@@ -340,7 +338,7 @@
     return `
       <div class="listing-row">
         <span class="listing-name">
-          ${i.name}${i.sample ? `<span class="tag tag-sample">SAMPLE</span>` : ""}<span class="status-pill ${st.cls}">${st.label}</span>
+          ${i.name}<span class="status-pill ${st.cls}">${st.label}</span>
         </span>
         <span>${i.priceBand}</span>
         <span>${i.lotSize} sh</span>
@@ -378,7 +376,6 @@
       ] || "v-watch";
     return `
       <span class="status-pill ${st.cls}">${st.label}</span>
-      ${ipo.sample ? `<span class="tag tag-sample">SAMPLE</span>` : ""}
       <h2>${ipo.name}</h2>
       <div class="sub">${ipo.sector} · ${ipo.exchange}${ipo.segment === "sme" ? " · SME" : ""}</div>
       <div class="rating" title="Rating ${ipo.rating}/5">${stars(ipo.rating)} <span class="verdict-tag ${verdictClass}">${ipo.verdict}</span></div>

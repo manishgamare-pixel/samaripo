@@ -54,7 +54,6 @@
       "distancePct": 28.5,
       "nearPeak": false,
       "segment": "mainline",
-      "sample": false,
       "cutoff": 70,
       "gmpEst": 95
     },
@@ -109,7 +108,6 @@
       "distancePct": 23.9,
       "nearPeak": false,
       "segment": "mainline",
-      "sample": false,
       "cutoff": 1960,
       "gmpEst": 30
     },
@@ -164,7 +162,6 @@
       "distancePct": 41.7,
       "nearPeak": false,
       "segment": "mainline",
-      "sample": false,
       "cutoff": 390,
       "gmpEst": 18
     },
@@ -220,7 +217,6 @@
       "distancePct": 23.4,
       "nearPeak": false,
       "segment": "mainline",
-      "sample": false,
       "cutoff": 108,
       "gmpEst": 7
     },
@@ -276,7 +272,6 @@
       "distancePct": 33.2,
       "nearPeak": false,
       "segment": "mainline",
-      "sample": false,
       "cutoff": 78,
       "gmpEst": 30
     },
@@ -332,7 +327,6 @@
       "distancePct": 39.2,
       "nearPeak": false,
       "segment": "mainline",
-      "sample": false,
       "cutoff": 279,
       "gmpEst": 80
     },
@@ -387,7 +381,6 @@
       "distancePct": 27,
       "nearPeak": false,
       "segment": "mainline",
-      "sample": false,
       "cutoff": 160,
       "gmpEst": 3
     },
@@ -443,7 +436,6 @@
       "distancePct": 2.1,
       "nearPeak": true,
       "segment": "mainline",
-      "sample": false,
       "cutoff": 785,
       "gmpEst": 250
     },
@@ -493,7 +485,6 @@
       "whyAffordable": "Expected ~27-share lot keeps the outlay near ₹14,600.",
       "report": null,
       "segment": "mainline",
-      "sample": false,
       "cutoff": 540,
       "gmpEst": 0
     },
@@ -549,325 +540,8 @@
       "distancePct": 4.3,
       "nearPeak": false,
       "segment": "mainline",
-      "sample": false,
       "cutoff": 1140,
       "gmpEst": 0
-    },
-    {
-      "id": "novotech-digital",
-      "symbol": null,
-      "name": "NovoTech Digital",
-      "sector": "Consumer Tech",
-      "exchange": "NSE | BSE",
-      "segment": "mainline",
-      "sample": true,
-      "status": "open",
-      "priceBand": "₹180 – ₹190",
-      "lotSize": 78,
-      "minInvestment": "₹14,820",
-      "issueSize": "₹650 Cr",
-      "dates": {
-        "open": "2026-08-20",
-        "close": "2026-08-22",
-        "listing": "2026-08-27"
-      },
-      "sub": {
-        "qib": "12.40x",
-        "nii": "8.20x",
-        "rii": "6.15x",
-        "w": [
-          0.5,
-          0.15,
-          0.35
-        ]
-      },
-      "qib": {
-        "subscription": "12.40x",
-        "bookedAsOn": "Day 2"
-      },
-      "retail": {
-        "subscription": "6.15x"
-      },
-      "gmp": "₹45",
-      "gmpAsOn": "Day 2",
-      "listingGain": "TBA",
-      "listingPrice": "TBA",
-      "rating": 4,
-      "verdict": "Strong",
-      "tags": [
-        "Consumer tech",
-        "Affordable lot"
-      ],
-      "highlights": [
-        "Sample data - smart appliance maker with strong D2C growth.",
-        "QIB demand 12x shows strong institutional interest.",
-        "Retail lot of only ₹14,820 - very affordable."
-      ],
-      "risks": [
-        "Sample data - verify on BSE/NSE.",
-        "Consumer discretionary demand can be cyclical.",
-        "Premium valuation vs hardware peers."
-      ],
-      "whyAffordable": "78-share lot at ₹190 = ₹14,820 minimum.",
-      "report": null,
-      "cutoff": 190,
-      "gmpEst": 45,
-      "fin": {
-        "years": [
-          "FY25",
-          "FY24",
-          "FY23"
-        ],
-        "revenue": [
-          1420,
-          1180,
-          940
-        ],
-        "pat": [
-          210,
-          165,
-          120
-        ],
-        "assets": [
-          3100,
-          2600,
-          2200
-        ]
-      },
-      "pe": 38,
-      "peerPe": 42
-    },
-    {
-      "id": "greencrest-renewables",
-      "symbol": null,
-      "name": "GreenCrest Renewables",
-      "sector": "Renewable Energy",
-      "exchange": "NSE | BSE",
-      "segment": "mainline",
-      "sample": true,
-      "status": "open",
-      "priceBand": "₹95 – ₹100",
-      "lotSize": 148,
-      "minInvestment": "₹14,800",
-      "issueSize": "₹880 Cr",
-      "dates": {
-        "open": "2026-08-21",
-        "close": "2026-08-25",
-        "listing": "2026-08-28"
-      },
-      "sub": {
-        "qib": "3.20x",
-        "nii": "2.10x",
-        "rii": "4.50x",
-        "w": [
-          0.5,
-          0.15,
-          0.35
-        ]
-      },
-      "qib": {
-        "subscription": "3.20x",
-        "bookedAsOn": "Day 2"
-      },
-      "retail": {
-        "subscription": "4.50x"
-      },
-      "gmp": "₹12",
-      "gmpAsOn": "Day 2",
-      "listingGain": "TBA",
-      "listingPrice": "TBA",
-      "rating": 3.5,
-      "verdict": "Moderate",
-      "tags": [
-        "Green energy",
-        "Affordable lot"
-      ],
-      "highlights": [
-        "Sample data - solar + storage developer with a growing pipeline.",
-        "Retail lot of 148 shares = ₹14,800.",
-        "Healthy retail demand on day 2."
-      ],
-      "risks": [
-        "Sample data - verify on BSE/NSE.",
-        "Land and grid-connect delays.",
-        "Power tariffs are regulated and can be revised."
-      ],
-      "whyAffordable": "148-share lot at ₹100 = ₹14,800 minimum.",
-      "report": null,
-      "cutoff": 100,
-      "gmpEst": 12,
-      "fin": {
-        "years": [
-          "FY25",
-          "FY24",
-          "FY23"
-        ],
-        "revenue": [
-          980,
-          820,
-          690
-        ],
-        "pat": [
-          140,
-          108,
-          85
-        ],
-        "assets": [
-          2400,
-          2050,
-          1750
-        ]
-      },
-      "pe": 28,
-      "peerPe": 30
-    },
-    {
-      "id": "finedge-capital",
-      "symbol": null,
-      "name": "FinEdge Capital",
-      "sector": "Fintech",
-      "exchange": "NSE | BSE",
-      "segment": "mainline",
-      "sample": true,
-      "status": "upcoming",
-      "priceBand": "Expected ₹400 – ₹420",
-      "lotSize": 35,
-      "minInvestment": "Approx ₹14,700",
-      "issueSize": "Approx ₹1,150 Cr",
-      "dates": {
-        "open": "TBA",
-        "close": "TBA",
-        "listing": "TBA"
-      },
-      "qib": {
-        "subscription": "TBA",
-        "bookedAsOn": "Not yet open"
-      },
-      "retail": {
-        "subscription": "TBA"
-      },
-      "gmp": "TBA",
-      "gmpAsOn": "Not yet open",
-      "listingGain": "TBA",
-      "listingPrice": "TBA",
-      "rating": 3.5,
-      "verdict": "Watch",
-      "tags": [
-        "Fintech",
-        "Large-cap"
-      ],
-      "highlights": [
-        "Sample data - digital lending + wealth platform.",
-        "Rapid loan-book growth with improving asset quality.",
-        "Watch the QIB book once the window opens."
-      ],
-      "risks": [
-        "Sample data - verify on BSE/NSE.",
-        "Regulatory changes in digital lending.",
-        "Funding costs and credit risk."
-      ],
-      "whyAffordable": "Expected ~35-share lot keeps the outlay near ₹14,700.",
-      "report": null,
-      "cutoff": 420,
-      "gmpEst": 0,
-      "fin": {
-        "years": [
-          "FY25",
-          "FY24",
-          "FY23"
-        ],
-        "revenue": [
-          860,
-          620,
-          410
-        ],
-        "pat": [
-          95,
-          58,
-          30
-        ],
-        "assets": [
-          1450,
-          1100,
-          760
-        ]
-      },
-      "pe": 45,
-      "peerPe": 40
-    },
-    {
-      "id": "medipeak-lifesciences",
-      "symbol": null,
-      "name": "MediPeak Lifesciences",
-      "sector": "Pharmaceuticals",
-      "exchange": "NSE | BSE",
-      "segment": "mainline",
-      "sample": true,
-      "status": "upcoming",
-      "priceBand": "Expected ₹290 – ₹305",
-      "lotSize": 48,
-      "minInvestment": "Approx ₹14,640",
-      "issueSize": "Approx ₹1,020 Cr",
-      "dates": {
-        "open": "TBA",
-        "close": "TBA",
-        "listing": "TBA"
-      },
-      "qib": {
-        "subscription": "TBA",
-        "bookedAsOn": "Not yet open"
-      },
-      "retail": {
-        "subscription": "TBA"
-      },
-      "gmp": "TBA",
-      "gmpAsOn": "Not yet open",
-      "listingGain": "TBA",
-      "listingPrice": "TBA",
-      "rating": 3.5,
-      "verdict": "Watch",
-      "tags": [
-        "Pharma",
-        "Large-cap"
-      ],
-      "highlights": [
-        "Sample data - specialty generics with a US pipeline.",
-        "Stable EBITDA margins and export-led growth.",
-        "48-share lot = ~₹14,640 minimum."
-      ],
-      "risks": [
-        "Sample data - verify on BSE/NSE.",
-        "US FDA compliance risk.",
-        "Currency and raw-material cost swings."
-      ],
-      "whyAffordable": "48-share lot at ₹305 = ₹14,640 minimum.",
-      "report": null,
-      "cutoff": 305,
-      "gmpEst": 0,
-      "fin": {
-        "years": [
-          "FY25",
-          "FY24",
-          "FY23"
-        ],
-        "revenue": [
-          1240,
-          1080,
-          950
-        ],
-        "pat": [
-          180,
-          148,
-          122
-        ],
-        "assets": [
-          2100,
-          1850,
-          1600
-        ]
-      },
-      "pe": 33,
-      "peerPe": 36
     }
   ],
   "pricesUpdatedOn": "2026-08-18 11:20:54"
