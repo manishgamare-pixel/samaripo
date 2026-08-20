@@ -535,8 +535,7 @@
     if (!tabsEl) return;
     tabsEl.innerHTML = `
       <button class="seg-tab ${activeSegment === "mainline" ? "active" : ""}" data-segment="mainline">Mainline</button>
-      <button class="seg-tab ${activeSegment === "sme" ? "active" : ""}" data-segment="sme">SME</button>
-      <span class="tabs-hint">IPO Xtra · ${activeSegment === "mainline" ? "Mainboard" : "SME"} issues</span>`;
+      <button class="seg-tab ${activeSegment === "sme" ? "active" : ""}" data-segment="sme">SME</button>`;
     tabsEl.addEventListener("click", (e) => {
       const t = e.target.closest(".seg-tab");
       if (!t) return;
