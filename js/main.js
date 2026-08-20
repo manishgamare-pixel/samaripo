@@ -16,13 +16,15 @@
   let data = [];
   let statusFilter = "all";
   let affordableOnly = true;
+  let activeSegment = "mainline";
 
   const $ = (sel) => document.querySelector(sel);
 
   const statusMeta = {
     listed: { cls: "status-listed", label: "Listed" },
     open: { cls: "status-open", label: "Open" },
-    upcoming: { cls: "status-upcoming", label: "Upcoming" }
+    upcoming: { cls: "status-upcoming", label: "Upcoming" },
+    closed: { cls: "status-closed", label: "Closed" }
   };
 
   function logoColor(name) {
@@ -74,6 +76,7 @@
         </div>
         <div class="tags">
           ${ipo.tags.map((t) => `<span class="tag">${t}</span>`).join("")}
+          ${ipo.sample ? `<span class="tag tag-sample">SAMPLE</span>` : ""}
           ${ipo.nearPeak ? `<span class="tag tag-peak">NEAR PEAK</span>` : ""}
         </div>
         <div class="card-actions">
@@ -86,12 +89,13 @@
   function renderGrid() {
     const q = ($("#searchInput").value || "").trim().toLowerCase();
     let items = data.filter((ipo) => {
+      if (ipo.segment !== activeSegment) return false;
       if (statusFilter !== "all" && ipo.status !== statusFilter) return false;
       if (affordableOnly && !isAffordable(ipo)) return false;
       if (q) {
         const hay = `${ipo.name} ${ipo.sector} ${ipo.tags.join(" ")}`.toLowerCase();
         if (!hay.includes(q)) return false;
-      } else if (statusFilter !== "listed" && isArchived(ipo)) {
+      } else if (statusFilter !== "listed" && statusFilter !== "closed" && isArchived(ipo)) {
         return false;
       }
       return true;
@@ -107,11 +111,52 @@
   }
 
   function isArchived(ipo) {
-    return ipo.status === "listed";
+    return ipo.status === "listed" || ipo.status === "closed";
   }
 
   function visibleIpos() {
-    return data.filter((i) => !isArchived(i));
+    return data.filter((i) => i.segment === activeSegment && !isArchived(i));
+  }
+
+  function visibleFor(segment) {
+    return data.filter((i) => i.segment === segment && !isArchived(i));
+  }
+
+  function totalSubscription(sub, overrides) {
+    if (!sub || !sub.qib || !sub.nii || !sub.rii) return null;
+    const w = sub.w || [0.5, 0.15, 0.35];
+    const v = (key) => {
+      const src = (overrides && overrides[key]) || sub[key];
+      return parseFloat(String(src).replace("x", "")) || 0;
+    };
+    return Math.round((v("qib") * w[0] + v("nii") * w[1] + v("rii") * w[2]) * 100) / 100;
+  }
+
+  function expectedListingPrice(gmp, upperBand) {
+    return (Number(gmp) || 0) + (Number(upperBand) || 0);
+  }
+
+  function gainPct(expected, cutoff) {
+    const c = Number(cutoff);
+    if (!c) return 0;
+    return Math.round(((expected - c) / c) * 10000) / 100;
+  }
+
+  function allotmentResult(retailMult, random) {
+    const r = parseFloat(String(retailMult).replace("x", "")) || 0;
+    const mult = Math.max(1, r);
+    const prob = 1 / mult;
+    const roll = typeof random === "number" ? random : Math.random();
+    return { prob, allotted: roll < prob };
+  }
+
+  function sentimentFor(pe, peerPe) {
+    if (pe == null || peerPe == null || isNaN(pe) || isNaN(peerPe)) {
+      return { label: "Not enough data", cls: "s-muted" };
+    }
+    if (pe < peerPe * 0.9) return { label: "Cheap", cls: "s-cheap" };
+    if (pe > peerPe * 1.1) return { label: "Overvalued", cls: "s-over" };
+    return { label: "Fair", cls: "s-fair" };
   }
 
   function renderStats() {
@@ -160,6 +205,7 @@
               <span><b>GMP:</b> ${ipo.gmp}</span>
               <span><b>Retail:</b> ${ipo.retail.subscription}</span>
               ${ipo.livePrice != null ? `<span><b>Live:</b> ${fmtInr(ipo.livePrice)}</span>` : ""}
+              ${ipo.sample ? `<span class="tag tag-sample">SAMPLE</span>` : ""}
               ${ipo.nearPeak ? `<span class="tag tag-peak">NEAR PEAK</span>` : ""}
             </div>
             <p class="pick-why">${ipo.whyAffordable || ""}</p>
@@ -263,11 +309,11 @@
     const html = groups
       .map((g) => {
         const items = g.key === "listed"
-          ? data.filter((i) => i.status === "listed" && !isArchived(i))
-          : data.filter((i) => i.status === g.key);
+          ? data.filter((i) => i.segment === activeSegment && i.status === "listed" && !isArchived(i))
+          : data.filter((i) => i.segment === activeSegment && i.status === g.key);
         const emptyMsg = g.key === "listed"
           ? "Listed IPOs are archived — use Search or the Listed filter to view them."
-          : `No ${g.title} IPOs tracked.`;
+          : `No ${g.title} ${activeSegment === "sme" ? "SME " : ""}IPOs tracked.`;
         const rows = items.length
           ? items.map(ipoListingRow).join("")
           : `<div class="listing-row listing-empty">${emptyMsg}</div>`;
@@ -294,7 +340,7 @@
     return `
       <div class="listing-row">
         <span class="listing-name">
-          ${i.name}<span class="status-pill ${st.cls}">${st.label}</span>
+          ${i.name}${i.sample ? `<span class="tag tag-sample">SAMPLE</span>` : ""}<span class="status-pill ${st.cls}">${st.label}</span>
         </span>
         <span>${i.priceBand}</span>
         <span>${i.lotSize} sh</span>
@@ -330,19 +376,11 @@
       { Strong: "v-strong", Moderate: "v-moderate", Watch: "v-watch", Neutral: "v-neutral", Speculative: "v-speculative" }[
         ipo.verdict
       ] || "v-watch";
-    const bars = [
-      { label: "QIB subscription", value: ipo.qib.subscription },
-      { label: "Retail subscription", value: ipo.retail.subscription }
-    ];
-    const pct = (v) => {
-      const n = parseFloat(String(v).replace("x", ""));
-      if (isNaN(n)) return 5;
-      return Math.min(100, Math.max(4, n * 2.5));
-    };
     return `
       <span class="status-pill ${st.cls}">${st.label}</span>
+      ${ipo.sample ? `<span class="tag tag-sample">SAMPLE</span>` : ""}
       <h2>${ipo.name}</h2>
-      <div class="sub">${ipo.sector} · ${ipo.exchange}</div>
+      <div class="sub">${ipo.sector} · ${ipo.exchange}${ipo.segment === "sme" ? " · SME" : ""}</div>
       <div class="rating" title="Rating ${ipo.rating}/5">${stars(ipo.rating)} <span class="verdict-tag ${verdictClass}">${ipo.verdict}</span></div>
 
       <section class="metric-line">
@@ -358,20 +396,9 @@
           : ""}
       </section>
 
-      <section>
-        <h4>Subscription (${ipo.qib.bookedAsOn || "final"})</h4>
-        <div class="sub-bars">
-          ${bars
-            .map(
-              (b) => `
-              <div class="sub-bar">
-                <div class="bar-label"><span>${b.label}</span><span class="v">${b.value}</span></div>
-                <div class="track"><div class="fill" style="width:${pct(b.value)}%"></div></div>
-              </div>`
-            )
-            .join("")}
-        </div>
-      </section>
+      ${subscriptionPanelHtml(ipo)}
+
+      ${financialHtml(ipo)}
 
       <section>
         <h4>Why this qualifies as affordable for the common investor</h4>
@@ -403,10 +430,217 @@
     `;
   }
 
+  function subMultiple(v) {
+    const n = parseFloat(String(v).replace("x", ""));
+    return isNaN(n) ? 0 : n;
+  }
+
+  function subscriptionPanelHtml(ipo) {
+    if (ipo.status === "listed") {
+      const bars = [
+        { label: "QIB subscription (final)", value: ipo.qib.subscription },
+        { label: "Retail subscription (final)", value: ipo.retail.subscription }
+      ];
+      return `
+        <section>
+          <h4>Subscription (final)</h4>
+          <div class="sub-bars">
+            ${bars
+              .map(
+                (b) => `
+                <div class="sub-bar">
+                  <div class="bar-label"><span>${b.label}</span><span class="v">${b.value}</span></div>
+                  <div class="track"><div class="fill" style="width:${Math.min(100, Math.max(4, subMultiple(b.value) * 2.5))}%"></div></div>
+                </div>`
+              )
+              .join("")}
+          </div>
+        </section>`;
+    }
+    if (ipo.status !== "open" || !ipo.sub) {
+      const msg = ipo.status === "open"
+        ? "Subscription data not available yet."
+        : ipo.status === "upcoming"
+          ? `Subscription not open yet — bidding begins on ${ipo.dates.open === "TBA" ? "the open date" : ipo.dates.open}.`
+          : "Subscription closed — allotment has been finalized.";
+      return `<section><h4>Live Subscription</h4><p class="muted">${msg}</p></section>`;
+    }
+    const w = ipo.sub.w || [0.5, 0.15, 0.35];
+    const tiers = ["qib", "nii", "rii"];
+    const labels = {
+      qib: "QIB (Qualified Institutional Buyers)",
+      nii: "NII (Non-Institutional Investors)",
+      rii: "RII (Retail Individual Investors)"
+    };
+    return `
+      <section>
+        <h4>Live Subscription</h4>
+        <p class="formula">Total = QIB×${Math.round(w[0] * 100)}% + NII×${Math.round(w[1] * 100)}% + Retail×${Math.round(w[2] * 100)}%</p>
+        <div class="sub-tiers">
+          ${tiers
+            .map(
+              (t) => `
+              <div class="sub-tier">
+                <div class="bar-label"><span>${labels[t]} <em>(${Math.round(w[["qib", "nii", "rii"].indexOf(t)] * 100)}%)</em></span>
+                  <input class="sub-input" data-tier="${t}" type="number" min="0" step="0.01" value="${subMultiple(ipo.sub[t])}" aria-label="${labels[t]} multiple" /></div>
+                <div class="track"><div class="fill" data-fill="${t}" style="width:${Math.min(100, subMultiple(ipo.sub[t]) * 4)}%"></div></div>
+              </div>`
+            )
+            .join("")}
+        </div>
+        <div class="total-sub">Total Subscription Multiple: <strong data-total>${totalSubscription(ipo.sub)}x</strong></div>
+      </section>`;
+  }
+
+  function financialHtml(ipo) {
+    const f = ipo.fin;
+    if (!f || !f.years || !f.years.length) {
+      return `<section><h4>Financial Health</h4><p class="muted">Not enough data.</p></section>`;
+    }
+    const rows = [
+      { label: "Revenue (₹ Cr)", arr: f.revenue },
+      { label: "Profit After Tax (₹ Cr)", arr: f.pat },
+      { label: "Total Assets (₹ Cr)", arr: f.assets }
+    ]
+      .map(
+        (r) => `<tr><td>${r.label}</td>${f.years.map((y, idx) => `<td>${Number(r.arr[idx] || 0).toLocaleString("en-IN")}</td>`).join("")}</tr>`
+      )
+      .join("");
+    return `
+      <section>
+        <h4>Financial Health (last ${f.years.length} fiscal years)</h4>
+        <table class="fin-table">
+          <thead><tr><th>Metric</th>${f.years.map((y) => `<th>${y}</th>`).join("")}</tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+        ${sentimentHtml(ipo)}
+      </section>`;
+  }
+
+  function sentimentHtml(ipo) {
+    const s = sentimentFor(ipo.pe, ipo.peerPe);
+    const detail = s.label === "Not enough data"
+      ? ""
+      : `IPO P/E ${ipo.pe}x vs listed market peers ${ipo.peerPe}x.`;
+    return `
+      <div class="sentiment-box ${s.cls}">
+        <strong>Sentiment Summary</strong>
+        <span>${s.label === "Not enough data" ? "Not enough data" : s.label + " valuation"}</span>
+        <p class="muted">${detail}</p>
+      </div>`;
+  }
+
+  function renderSegmentTabs() {
+    const tabsEl = $("#segmentTabs");
+    if (!tabsEl) return;
+    tabsEl.innerHTML = `
+      <button class="seg-tab ${activeSegment === "mainline" ? "active" : ""}" data-segment="mainline">Mainline</button>
+      <button class="seg-tab ${activeSegment === "sme" ? "active" : ""}" data-segment="sme">SME</button>
+      <span class="tabs-hint">IPO Xtra · ${activeSegment === "mainline" ? "Mainboard" : "SME"} issues</span>`;
+    tabsEl.addEventListener("click", (e) => {
+      const t = e.target.closest(".seg-tab");
+      if (!t) return;
+      document.querySelectorAll(".seg-tab").forEach((x) => x.classList.remove("active"));
+      t.classList.add("active");
+      activeSegment = t.dataset.segment;
+      statusFilter = "all";
+      document.querySelectorAll(".chip").forEach((c) => c.classList.remove("active"));
+      const allChip = document.querySelector(".chip[data-status='all']");
+      if (allChip) allChip.classList.add("active");
+      renderAll();
+    });
+  }
+
+  function renderAll() {
+    renderStats();
+    renderPicks();
+    renderGrid();
+    renderListing();
+  }
+
+  function initTools() {
+    const gmpSel = $("#gmpIpoSelect");
+    const allotSel = $("#allotIpoSelect");
+    if (!gmpSel || !allotSel) return;
+    const opts = data
+      .map((i) => `<option value="${i.id}">${i.name}${i.segment === "sme" ? " (SME)" : ""}</option>`)
+      .join("");
+    gmpSel.innerHTML = opts;
+    allotSel.innerHTML = opts;
+
+    const gmpSlider = $("#gmpSlider");
+    const gmpInput = $("#gmpInput");
+    const cutoffInput = $("#gmpCutoff");
+    const expectedEl = $("#gmpExpected");
+    const gainEl = $("#gmpGain");
+
+    const setGmp = (v) => {
+      gmpSlider.value = v;
+      gmpInput.value = v;
+      updateGmp();
+    };
+    const updateGmp = () => {
+      const gmp = parseFloat(gmpInput.value) || 0;
+      const cutoff = parseFloat(cutoffInput.value) || 0;
+      const ipo = data.find((i) => i.id === gmpSel.value);
+      const upper = cutoff || (ipo && ipo.cutoff) || 0;
+      const expected = expectedListingPrice(gmp, upper);
+      expectedEl.textContent = "₹" + expected.toLocaleString("en-IN");
+      const pct = gainPct(expected, upper || 1);
+      gainEl.textContent = (pct >= 0 ? "+" : "") + pct + "%";
+      gainEl.classList.toggle("gain-up", pct >= 0);
+      gainEl.classList.toggle("gain-down", pct < 0);
+    };
+    gmpSel.addEventListener("change", () => {
+      const ipo = data.find((i) => i.id === gmpSel.value);
+      if (!ipo) return;
+      cutoffInput.value = ipo.cutoff || "";
+      const gmpDefault = Math.max(0, subMultiple(ipo.gmpEst || ipo.gmp || 0));
+      setGmp(Math.round(gmpDefault));
+    });
+    gmpSlider.addEventListener("input", () => {
+      gmpInput.value = gmpSlider.value;
+      updateGmp();
+    });
+    gmpInput.addEventListener("input", updateGmp);
+    cutoffInput.addEventListener("input", updateGmp);
+
+    const appInput = $("#allotPan");
+    const simBtn = $("#allotSimulate");
+    const resultEl = $("#allotResult");
+    simBtn.addEventListener("click", () => {
+      const pan = (appInput.value || "").trim().toUpperCase();
+      if (pan.length < 5) {
+        resultEl.innerHTML = `<div class="sim-error">Enter a valid PAN / Application number (min 5 characters).</div>`;
+        return;
+      }
+      const ipo = data.find((i) => i.id === allotSel.value);
+      const mult = subMultiple(ipo ? (ipo.sub && ipo.sub.rii) || ipo.retail.subscription : 0);
+      const res = allotmentResult(mult, undefined);
+      resultEl.innerHTML = res.allotted
+        ? `<div class="sim-win"><strong>Congratulations!</strong> You have been allotted shares in ${ipo ? ipo.name : "the IPO"} (probability ${Math.round(res.prob * 100)}%).</div>`
+        : `<div class="sim-lose"><strong>Not Allotted</strong> — chances were ~${Math.round(res.prob * 100)}%. Better luck with the next one.</div>`;
+    });
+  }
+
   function openModal(id) {
     const ipo = data.find((i) => i.id === id);
     if (!ipo) return;
     $("#modalBody").innerHTML = modalHtml(ipo);
+    const totalEl = $("#modalBody").querySelector("[data-total]");
+    if (totalEl) {
+      $("#modalBody").querySelectorAll(".sub-input").forEach((inp) => {
+        inp.addEventListener("input", () => {
+          const overrides = {};
+          document.querySelectorAll(".sub-input").forEach((x) => {
+            overrides[x.dataset.tier] = x.value;
+          });
+          totalEl.textContent = totalSubscription(ipo.sub, overrides) + "x";
+          const f = document.querySelector(`.fill[data-fill="${inp.dataset.tier}"]`);
+          if (f) f.style.width = Math.min(100, Math.max(0, parseFloat(inp.value) || 0) * 4) + "%";
+        });
+      });
+    }
     $("#modalBackdrop").style.display = "grid";
     document.body.style.overflow = "hidden";
   }
@@ -493,14 +727,19 @@
       statusMeta,
       buildReportText,
       visible: visibleIpos,
-      isArchived
+      visibleFor,
+      isArchived,
+      totalSubscription,
+      expectedListingPrice,
+      gainPct,
+      allotmentResult,
+      sentimentFor
     };
-    renderStats();
-    renderPicks();
-    renderGrid();
-    renderListing();
+    renderAll();
+    renderSegmentTabs();
     renderReports();
     initShareBox();
+    initTools();
   }
 
   init();

@@ -41,6 +41,7 @@
     "* Recommendations - 'best rated', 'cheapest lot', 'under Rs 15000'",
     "* Live prices - 'which IPO is near its 52-week high?'",
     "* Terms - 'What is GMP?', 'What is RHP?', 'What is ASBA?'",
+    "* Tools - 'Show me the GMP calculator', 'How do the tools work?'",
     "* Safety - 'How do I apply safely?'",
     "* Reports - 'Bajaj QIB report'",
     "* Sharing - 'Send the report to WhatsApp' or 'email me the report'"
@@ -158,8 +159,8 @@
       }
       const upcoming = visData().filter((i) => i.status === "upcoming");
       return upcoming.length
-        ? "No mainboard IPO is open right now. Upcoming:\n" + fmtIpoList(upcoming)
-        : "No mainboard IPO is currently open for retail bidding.";
+        ? "No IPO is open right now. Upcoming:\n" + fmtIpoList(upcoming)
+        : "No IPO is currently open for retail bidding.";
     }
 
     if (has(tokens, "upcoming", "next", "coming")) {
@@ -208,12 +209,16 @@
       return lines.join("\n");
     }
 
+    if (has(tokens, "tools", "tool", "calculator", "calc", "simulat", "estimator")) {
+      return "IPO Xtra tools live in the 'Tools' section on this page:\n* GMP calculator - set GMP and the upper price band; expected listing = upper band + GMP, shown as a gain or loss %.\n* Allotment simulator - enter your PAN/application number to simulate the retail lottery; your chance is roughly 1 / retail subscription multiple.\nBoth are illustrative only - GMP is unregulated speculation.";
+    }
+
     if (has(tokens, "safety", "scam", "protect", "secure", "safe", "apply", "how")) {
       return SAFETY_MSG;
     }
 
     if (has(tokens, "total", "count", "how many")) {
-      return "I am tracking " + visData().length + " mainboard IPOs on this site.";
+      return "I am tracking " + visData().length + " IPOs in the active segment on this site." + (visData().length ? "" : " Switch to the Mainline or SME tab on the dashboard.");
     }
 
     return HELP_MSG;

@@ -10,7 +10,7 @@
   <meta property="og:title" content="Samar's IPO Market - Mainboard IPO Screener" />
   <meta property="og:description" content="Affordable mainboard IPOs (lots <= Rs 15,000) with QIB reports, RHP summaries, live prices and safety guidance for the common investor." />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='4' y='16' width='6' height='12' rx='1' fill='%2300d09c'/><rect x='13' y='10' width='6' height='18' rx='1' fill='%2300a2d8'/><rect x='22' y='4' width='6' height='24' rx='1' fill='%23262a41'/></svg>" />
-  <link rel="stylesheet" href="css/styles.css?v=12" />
+  <link rel="stylesheet" href="css/styles.css?v=13" />
 </head>
 <body>
   <header class="topbar">
@@ -23,6 +23,7 @@
         <a href="#dashboard">Dashboard</a>
         <a href="#listing">Listing</a>
         <a href="#picks">Best Picks</a>
+        <a href="#tools">Tools</a>
         <a href="#reports">Reports</a>
         <a href="#howto">How to Apply</a>
         <a href="#safety">Safety</a>
@@ -38,12 +39,12 @@
         <div class="hero-copy">
           <h1>Best <span class="accent">mainboard IPOs</span> that the common investor can actually afford.</h1>
           <p>
-            Only SEBI-approved mainboard IPOs with low retail lots (under ~₹15,000).
-            No SMEs, no high-capital plays. Every pick comes with a QIB report, an RHP
+            SEBI-approved mainboard and SME IPOs with low retail lots (under ~₹15,000).
+            Switch between the Mainline and SME tabs below. Every pick comes with a QIB report, an RHP
             summary, and honest precautionary measures.
           </p>
           <div class="hero-badges">
-            <span class="badge">Mainboard only</span>
+            <span class="badge">Mainline + SME</span>
             <span class="badge">Lots <= ₹15,000</span>
             <span class="badge">QIB + RHP attached</span>
             <span class="badge">Security checks</span>
@@ -78,14 +79,18 @@
   <section class="container" id="dashboard">
     <div class="section-head">
       <h2>IPO Dashboard</h2>
+      <p>Switch segments, then filter by status. Search works within the active tab.</p>
       <span class="data-note" id="dataNote"></span>
     </div>
+
+    <div class="segment-tabs" id="segmentTabs"></div>
 
     <div class="filters" id="filters">
       <button class="chip active" data-status="all">All</button>
       <button class="chip" data-status="open">Open</button>
       <button class="chip" data-status="upcoming">Upcoming</button>
       <button class="chip" data-status="listed">Listed</button>
+      <button class="chip" data-status="closed">Closed</button>
       <label class="toggle-wrap">
         <input type="checkbox" id="affordableOnly" checked />
         <span class="toggle-label">Only lots ≤ ₹15,000</span>
@@ -99,7 +104,7 @@
   <section class="container" id="listing">
     <div class="section-head">
       <h2>Full IPO Listing</h2>
-      <p>Every tracked mainboard IPO, grouped exactly like the daily email report — name, band, lot, minimum, QIB/retail subscription, close date and verdict.</p>
+      <p>Every tracked IPO in the active segment (Mainline or SME), grouped exactly like the daily email report — name, band, lot, minimum, QIB/retail subscription, close date and verdict.</p>
       <span class="data-note" id="listingNote"></span>
     </div>
     <div class="listing" id="ipoListing"></div>
@@ -108,10 +113,47 @@
   <section class="container" id="picks">
     <div class="section-head">
       <h2>Best Picks for the Common Investor</h2>
-      <p>Ranked from the dataset each load by verdict, rating, retail demand and grey-market premium — always affordable lots, always mainboard. Refresh the data daily to keep this honest.</p>
+      <p>Ranked from the active segment each load by verdict, rating, retail demand and grey-market premium — always affordable lots. Refresh the data daily to keep this honest.</p>
       <span class="data-note" id="picksNote"></span>
     </div>
     <div class="picks-grid" id="picksGrid"></div>
+  </section>
+
+  <section class="container" id="tools">
+    <div class="section-head">
+      <h2>IPO Xtra Tools</h2>
+      <p>Two quick sanity checks: estimate a listing price from GMP, and simulate retail allotment odds. Both are illustrative only — GMP is unregulated speculation.</p>
+    </div>
+    <div class="tools-grid">
+      <div class="tool-card">
+        <h3>GMP → Expected Listing Calculator</h3>
+        <p class="formula">Expected Listing Price = Upper Price Band + GMP</p>
+        <label class="field-label" for="gmpIpoSelect">IPO</label>
+        <select id="gmpIpoSelect" class="tool-select"></select>
+        <label class="field-label" for="gmpInput">GMP (₹)</label>
+        <input id="gmpSlider" type="range" min="0" max="500" step="5" value="0" />
+        <div class="range-row">
+          <input id="gmpInput" type="number" min="0" value="0" aria-label="GMP amount" />
+          <input id="gmpCutoff" type="number" min="0" placeholder="Upper band ₹" aria-label="Upper price band" />
+        </div>
+        <div class="calc-out">
+          <span>Expected listing</span>
+          <strong id="gmpExpected">₹0</strong>
+          <em id="gmpGain" class="gain-up">+0%</em>
+        </div>
+      </div>
+
+      <div class="tool-card">
+        <h3>Allotment Probability Simulator</h3>
+        <p>Chance of allotment ≈ <code>1 / retail subscription multiple</code>. Enter your PAN/Application number to simulate one draw.</p>
+        <label class="field-label" for="allotIpoSelect">IPO</label>
+        <select id="allotIpoSelect" class="tool-select"></select>
+        <label class="field-label" for="allotPan">PAN / Application number</label>
+        <input id="allotPan" type="text" placeholder="e.g. ABCPM1234F" aria-label="PAN or application number" />
+        <button class="btn btn-primary" id="allotSimulate" type="button">Simulate allotment</button>
+        <div id="allotResult"></div>
+      </div>
+    </div>
   </section>
 
   <section class="container" id="reports">
@@ -222,7 +264,7 @@
 
   <div id="assistantHost"></div>
 
-  <script src="js/main.js?v=12"></script>
-  <script src="js/assistant.js?v=12"></script>
+  <script src="js/main.js?v=13"></script>
+  <script src="js/assistant.js?v=13"></script>
 </body>
 </html>
