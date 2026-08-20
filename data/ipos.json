@@ -56,7 +56,7 @@
       "segment": "mainline",
       "sample": false,
       "cutoff": 70,
-      "gmpEst": 95.0
+      "gmpEst": 95
     },
     {
       "id": "hyundai-motor-india",
@@ -85,7 +85,7 @@
       "gmpAsOn": "Pre-listing",
       "listingGain": "-1%",
       "listingPrice": "₹1,934",
-      "rating": 3.0,
+      "rating": 3,
       "verdict": "Neutral",
       "tags": [
         "Large-cap",
@@ -104,14 +104,14 @@
       ],
       "whyAffordable": "Only 7 shares per lot keeps the minimum outlay near ₹14,000 despite the ₹1,960 band.",
       "report": "reports/hyundai-motor-rhp-qib.html",
-      "livePrice": 2199.0,
-      "high52": 2890.0,
+      "livePrice": 2199,
+      "high52": 2890,
       "distancePct": 23.9,
       "nearPeak": false,
       "segment": "mainline",
       "sample": false,
       "cutoff": 1960,
-      "gmpEst": 30.0
+      "gmpEst": 30
     },
     {
       "id": "swiggy",
@@ -160,13 +160,13 @@
       "whyAffordable": "38-share lot at ₹390 keeps the minimum outlay under ₹15,000.",
       "report": "reports/swiggy-rhp-qib.html",
       "livePrice": 276.3,
-      "high52": 474.0,
+      "high52": 474,
       "distancePct": 41.7,
       "nearPeak": false,
       "segment": "mainline",
       "sample": false,
       "cutoff": 390,
-      "gmpEst": 18.0
+      "gmpEst": 18
     },
     {
       "id": "ntpc-green-energy",
@@ -222,7 +222,7 @@
       "segment": "mainline",
       "sample": false,
       "cutoff": 108,
-      "gmpEst": 7.0
+      "gmpEst": 7
     },
     {
       "id": "vishal-mega-mart",
@@ -251,7 +251,7 @@
       "gmpAsOn": "Pre-listing",
       "listingGain": "+44%",
       "listingPrice": "₹112",
-      "rating": 4.0,
+      "rating": 4,
       "verdict": "Strong",
       "tags": [
         "Retail",
@@ -278,7 +278,7 @@
       "segment": "mainline",
       "sample": false,
       "cutoff": 78,
-      "gmpEst": 30.0
+      "gmpEst": 30
     },
     {
       "id": "mobikwik",
@@ -328,13 +328,13 @@
       "whyAffordable": "53-share lot = ₹14,787, very small outlay for a fintech play.",
       "report": "reports/mobikwik-rhp-qib.html",
       "livePrice": 203.21,
-      "high52": 334.0,
+      "high52": 334,
       "distancePct": 39.2,
       "nearPeak": false,
       "segment": "mainline",
       "sample": false,
       "cutoff": 279,
-      "gmpEst": 80.0
+      "gmpEst": 80
     },
     {
       "id": "sagility-india",
@@ -363,7 +363,7 @@
       "gmpAsOn": "Pre-listing",
       "listingGain": "+1%",
       "listingPrice": "₹162",
-      "rating": 3.0,
+      "rating": 3,
       "verdict": "Neutral",
       "tags": [
         "Healthcare IT",
@@ -384,12 +384,12 @@
       "report": "reports/sagility-rhp-qib.html",
       "livePrice": 42.28,
       "high52": 57.89,
-      "distancePct": 27.0,
+      "distancePct": 27,
       "nearPeak": false,
       "segment": "mainline",
       "sample": false,
       "cutoff": 160,
-      "gmpEst": 3.0
+      "gmpEst": 3
     },
     {
       "id": "unimech-aerospace",
@@ -418,7 +418,7 @@
       "gmpAsOn": "Pre-listing",
       "listingGain": "+110%",
       "listingPrice": "₹1,650",
-      "rating": 4.0,
+      "rating": 4,
       "verdict": "Strong",
       "tags": [
         "Aerospace",
@@ -439,13 +439,13 @@
       "whyAffordable": "19-share lot = ₹14,915, a low-cost entry into an aerospace story.",
       "report": "reports/unimech-rhp-qib.html",
       "livePrice": 1522.6,
-      "high52": 1555.0,
+      "high52": 1555,
       "distancePct": 2.1,
       "nearPeak": true,
       "segment": "mainline",
       "sample": false,
       "cutoff": 785,
-      "gmpEst": 250.0
+      "gmpEst": 250
     },
     {
       "id": "avanse-financial",
@@ -495,7 +495,7 @@
       "segment": "mainline",
       "sample": false,
       "cutoff": 540,
-      "gmpEst": 0.0
+      "gmpEst": 0
     },
     {
       "id": "lg-electronics-india",
@@ -524,7 +524,7 @@
       "gmpAsOn": "Listed 14 Oct 2025",
       "listingGain": "+50%",
       "listingPrice": "₹1,710.10",
-      "rating": 4.0,
+      "rating": 4,
       "verdict": "Strong",
       "tags": [
         "Consumer durables",
@@ -545,13 +545,13 @@
       "whyAffordable": "Lot of just 13 shares at the ₹1,140 upper band = ₹14,040 per application - among the lowest mainboard minimums.",
       "report": null,
       "livePrice": 1680.1,
-      "high52": 1755.0,
+      "high52": 1755,
       "distancePct": 4.3,
       "nearPeak": false,
       "segment": "mainline",
       "sample": false,
       "cutoff": 1140,
-      "gmpEst": 0.0
+      "gmpEst": 0
     },
     {
       "id": "novotech-digital",
@@ -592,7 +592,7 @@
       "gmpAsOn": "Day 2",
       "listingGain": "TBA",
       "listingPrice": "TBA",
-      "rating": 4.0,
+      "rating": 4,
       "verdict": "Strong",
       "tags": [
         "Consumer tech",
@@ -868,323 +868,6 @@
       },
       "pe": 33,
       "peerPe": 36
-    },
-    {
-      "id": "citybrew-foods",
-      "symbol": null,
-      "name": "CityBrew Foods",
-      "sector": "FMCG (SME)",
-      "exchange": "SME | BSE",
-      "segment": "sme",
-      "sample": true,
-      "status": "open",
-      "priceBand": "₹90 – ₹95",
-      "lotSize": 150,
-      "minInvestment": "₹14,250",
-      "issueSize": "₹52 Cr",
-      "dates": {
-        "open": "2026-08-20",
-        "close": "2026-08-24",
-        "listing": "2026-08-28"
-      },
-      "sub": {
-        "qib": "1.10x",
-        "nii": "2.00x",
-        "rii": "8.50x",
-        "w": [
-          0.5,
-          0.15,
-          0.35
-        ]
-      },
-      "qib": {
-        "subscription": "1.10x",
-        "bookedAsOn": "Day 2"
-      },
-      "retail": {
-        "subscription": "8.50x"
-      },
-      "gmp": "₹20",
-      "gmpAsOn": "Day 2",
-      "listingGain": "TBA",
-      "listingPrice": "TBA",
-      "rating": 3.0,
-      "verdict": "Speculative",
-      "tags": [
-        "SME",
-        "FMCG",
-        "Retail-heavy"
-      ],
-      "highlights": [
-        "Sample data - regional craft-brew and snacks maker.",
-        "SME issues are high-risk; retail-heavy subscription.",
-        "150-share lot = ₹14,250."
-      ],
-      "risks": [
-        "Sample data - verify on BSE/NSE.",
-        "SME liquidity is thin after listing.",
-        "Small scale vs national FMCG players."
-      ],
-      "whyAffordable": "150-share lot at ₹95 = ₹14,250 minimum.",
-      "report": null,
-      "cutoff": 95,
-      "gmpEst": 20,
-      "fin": {
-        "years": [
-          "FY25",
-          "FY24",
-          "FY23"
-        ],
-        "revenue": [
-          210,
-          180,
-          150
-        ],
-        "pat": [
-          18,
-          14,
-          10
-        ],
-        "assets": [
-          320,
-          260,
-          220
-        ]
-      },
-      "pe": 22,
-      "peerPe": 25
-    },
-    {
-      "id": "metroplast-sme",
-      "symbol": null,
-      "name": "MetroPlast",
-      "sector": "Plastics (SME)",
-      "exchange": "SME | NSE",
-      "segment": "sme",
-      "sample": true,
-      "status": "open",
-      "priceBand": "₹105 – ₹110",
-      "lotSize": 130,
-      "minInvestment": "₹14,300",
-      "issueSize": "₹48 Cr",
-      "dates": {
-        "open": "2026-08-21",
-        "close": "2026-08-25",
-        "listing": "2026-08-29"
-      },
-      "sub": {
-        "qib": "0.90x",
-        "nii": "1.50x",
-        "rii": "5.20x",
-        "w": [
-          0.5,
-          0.15,
-          0.35
-        ]
-      },
-      "qib": {
-        "subscription": "0.90x",
-        "bookedAsOn": "Day 2"
-      },
-      "retail": {
-        "subscription": "5.20x"
-      },
-      "gmp": "₹15",
-      "gmpAsOn": "Day 2",
-      "listingGain": "TBA",
-      "listingPrice": "TBA",
-      "rating": 3.0,
-      "verdict": "Watch",
-      "tags": [
-        "SME",
-        "Manufacturing"
-      ],
-      "highlights": [
-        "Sample data - auto-component plastic moulder.",
-        "130-share lot = ₹14,300.",
-        "Order book tied to automotive capex."
-      ],
-      "risks": [
-        "Sample data - verify on BSE/NSE.",
-        "Single-industry concentration.",
-        "SME post-listing liquidity risk."
-      ],
-      "whyAffordable": "130-share lot at ₹110 = ₹14,300 minimum.",
-      "report": null,
-      "cutoff": 110,
-      "gmpEst": 15,
-      "fin": {
-        "years": [
-          "FY25",
-          "FY24",
-          "FY23"
-        ],
-        "revenue": [
-          168,
-          142,
-          118
-        ],
-        "pat": [
-          15,
-          11,
-          8
-        ],
-        "assets": [
-          240,
-          195,
-          165
-        ]
-      },
-      "pe": 18,
-      "peerPe": 20
-    },
-    {
-      "id": "pureleaf-organics-sme",
-      "symbol": null,
-      "name": "PureLeaf Organics",
-      "sector": "Agro (SME)",
-      "exchange": "SME | NSE",
-      "segment": "sme",
-      "sample": true,
-      "status": "upcoming",
-      "priceBand": "Expected ₹75 – ₹80",
-      "lotSize": 180,
-      "minInvestment": "Approx ₹14,400",
-      "issueSize": "Approx ₹40 Cr",
-      "dates": {
-        "open": "TBA",
-        "close": "TBA",
-        "listing": "TBA"
-      },
-      "qib": {
-        "subscription": "TBA",
-        "bookedAsOn": "Not yet open"
-      },
-      "retail": {
-        "subscription": "TBA"
-      },
-      "gmp": "TBA",
-      "gmpAsOn": "Not yet open",
-      "listingGain": "TBA",
-      "listingPrice": "TBA",
-      "rating": 3.0,
-      "verdict": "Watch",
-      "tags": [
-        "SME",
-        "Agro"
-      ],
-      "highlights": [
-        "Sample data - organic tea and spice exporter.",
-        "180-share lot = ~₹14,400.",
-        "Growing export demand for organic products."
-      ],
-      "risks": [
-        "Sample data - verify on BSE/NSE.",
-        "Commodity price swings.",
-        "Small-cap SME liquidity."
-      ],
-      "whyAffordable": "180-share lot at ₹80 = ₹14,400 minimum.",
-      "report": null,
-      "cutoff": 80,
-      "gmpEst": 0,
-      "fin": {
-        "years": [
-          "FY25",
-          "FY24",
-          "FY23"
-        ],
-        "revenue": [
-          96,
-          82,
-          70
-        ],
-        "pat": [
-          9,
-          7,
-          5
-        ],
-        "assets": [
-          130,
-          105,
-          88
-        ]
-      },
-      "pe": 26,
-      "peerPe": 28
-    },
-    {
-      "id": "solartech-components-sme",
-      "symbol": null,
-      "name": "SolarTech Components",
-      "sector": "Solar (SME)",
-      "exchange": "SME | BSE",
-      "segment": "sme",
-      "sample": true,
-      "status": "closed",
-      "priceBand": "₹60 – ₹64",
-      "lotSize": 220,
-      "minInvestment": "₹14,080",
-      "issueSize": "₹55 Cr",
-      "dates": {
-        "open": "2026-08-12",
-        "close": "2026-08-14",
-        "listing": "2026-08-19"
-      },
-      "qib": {
-        "subscription": "1.40x",
-        "bookedAsOn": "Final day"
-      },
-      "retail": {
-        "subscription": "6.80x"
-      },
-      "gmp": "₹—",
-      "gmpAsOn": "Post-close",
-      "listingGain": "TBA",
-      "listingPrice": "TBA",
-      "rating": 3.0,
-      "verdict": "Watch",
-      "tags": [
-        "SME",
-        "Solar"
-      ],
-      "highlights": [
-        "Sample data - solar module component maker.",
-        "Closed for allotment; listing pending.",
-        "220-share lot = ₹14,080."
-      ],
-      "risks": [
-        "Sample data - verify on BSE/NSE.",
-        "Duty/tariff changes on imports.",
-        "SME post-listing liquidity risk."
-      ],
-      "whyAffordable": "220-share lot at ₹64 = ₹14,080 minimum.",
-      "report": null,
-      "cutoff": 64,
-      "gmpEst": 0,
-      "fin": {
-        "years": [
-          "FY25",
-          "FY24",
-          "FY23"
-        ],
-        "revenue": [
-          140,
-          118,
-          95
-        ],
-        "pat": [
-          12,
-          9,
-          6
-        ],
-        "assets": [
-          190,
-          155,
-          125
-        ]
-      },
-      "pe": 30,
-      "peerPe": 27
     }
   ],
   "pricesUpdatedOn": "2026-08-18 11:20:54"
